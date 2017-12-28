@@ -1,0 +1,64 @@
+@import "bootstrap/bootstrap";
+
+body {
+    color: #000;
+    background-color: #f4f4f4;
+    transition: background-color 1.5s ease;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/* panel styles */
+.panel {
+    /* min height incase content is higher than window height */
+    padding-bottom: 32px;
+}
+.whole-page {
+    min-height: 100vh;
+}
+.color-indigo {
+    background-color: $indigo;
+}
+.color-blue {
+    background-color: $blue;
+}
+.color-green {
+    background-color: $green;
+}
+.color-yellow {
+    background-color: $yellow;
+}
+.color-orange {
+    background-color: $orange;
+}
+.color-red {
+    background-color: $red;
+}
+.color-light-green {
+    background-color: $light-green;
+}
+.color-dark-green {
+     background-color: $dark-green;
+}
+.large {
+    font-size: 48px !important;
+}
+.material-icons {
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.no-select {
+    outline-style:none !important;
+    box-shadow:none !important;
+    border-color:transparent !important;
+    cursor: pointer;
+}
+.padding-top-bottom {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+.margin-right-32 {
+    margin-right: 32px;
+}
