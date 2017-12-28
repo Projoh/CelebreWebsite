@@ -2,130 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a501f96-0cdb-46fb-84f0-3f57f25d1b1e" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.editorconfig" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.gitattributes" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.htaccess" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/CelebreWebsite.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/404.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/LICENSE.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/browserconfig.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/css/main.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/css/normalize.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/doc/TOC.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/doc/css.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/doc/extend.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/doc/faq.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/doc/html.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/doc/js.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/doc/misc.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/doc/usage.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/favicon.ico" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/humans.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/icon.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/img/.gitignore" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/index.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/js/main.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/js/plugins.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/js/vendor/jquery-3.2.1.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/js/vendor/modernizr-3.5.0.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/robots.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_alert.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_badge.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_breadcrumb.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_button-group.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_buttons.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_card.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_carousel.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_close.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_code.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_custom-forms.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_dropdown.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_forms.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_functions.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_grid.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_images.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_input-group.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_jumbotron.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_list-group.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_media.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_mixins.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_modal.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_nav.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_navbar.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_pagination.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_popover.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_print.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_progress.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_reboot.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_root.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_tables.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_tooltip.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_transitions.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_type.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_utilities.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/_variables.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/bootstrap-grid.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/bootstrap-grid.css.map" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/bootstrap-grid.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/bootstrap-reboot.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/bootstrap-reboot.css.map" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/bootstrap-reboot.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/bootstrap.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_alert.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_background-variant.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_badge.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_border-radius.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_box-shadow.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_breakpoints.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_buttons.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_caret.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_clearfix.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_float.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_forms.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_gradients.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_grid-framework.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_grid.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_hover.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_image.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_list-group.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_lists.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_nav-divider.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_navbar-align.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_pagination.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_reset-text.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_resize.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_screen-reader.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_size.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_table-row.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_text-emphasis.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_text-hide.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_text-truncate.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_transition.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/mixins/_visibility.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/utilities/_align.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/utilities/_background.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/utilities/_borders.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/utilities/_clearfix.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/utilities/_display.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/utilities/_embed.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/utilities/_flex.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/utilities/_float.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/utilities/_position.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/utilities/_screenreaders.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/utilities/_sizing.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/utilities/_spacing.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/utilities/_text.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/bootstrap/utilities/_visibility.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/moebootstrap.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/moebootstrap.css.map" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scss/moebootstrap.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/site.webmanifest" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/tile-wide.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/tile.png" />
+      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
+      <change beforePath="$PROJECT_DIR$/scss/moebootstrap.css" afterPath="$PROJECT_DIR$/scss/moebootstrap.css" />
+      <change beforePath="$PROJECT_DIR$/scss/moebootstrap.css.map" afterPath="$PROJECT_DIR$/scss/moebootstrap.css.map" />
+      <change beforePath="$PROJECT_DIR$/scss/moebootstrap.scss" afterPath="$PROJECT_DIR$/scss/moebootstrap.scss" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -141,11 +22,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.60684973">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="672">
-                  <caret line="28" column="25" lean-forward="true" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
+                <state relative-caret-position="600">
+                  <caret line="130" column="74" lean-forward="false" selection-start-line="130" selection-start-column="74" selection-end-line="130" selection-end-column="74" />
                   <folding>
                     <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
                   </folding>
@@ -153,11 +34,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+          <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/.gitignore">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="72">
-                  <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+                <state relative-caret-position="96">
+                  <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -176,8 +57,8 @@
           <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/js/main.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="600">
-                  <caret line="25" column="9" lean-forward="true" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+                <state relative-caret-position="744">
+                  <caret line="31" column="36" lean-forward="false" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
                   <folding>
                     <element signature="n#!!block;n#intializeCelebreMeans#0" expanded="false" />
                   </folding>
@@ -192,8 +73,8 @@
           <file leaf-file-name="moebootstrap.scss" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/scss/moebootstrap.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1488">
-                  <caret line="62" column="16" lean-forward="false" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="16" />
+                <state relative-caret-position="1440">
+                  <caret line="60" column="1" lean-forward="true" selection-start-line="60" selection-start-column="1" selection-end-line="60" selection-end-column="1" />
                   <folding />
                 </state>
               </provider>
@@ -220,10 +101,10 @@
       <list>
         <option value="$PROJECT_DIR$/scss/custom-bootstrap.scss" />
         <option value="$PROJECT_DIR$/scss/bootstrap/_variables.scss" />
-        <option value="$PROJECT_DIR$/scss/moebootstrap.scss" />
-        <option value="$PROJECT_DIR$/js/main.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/js/main.js" />
+        <option value="$PROJECT_DIR$/scss/moebootstrap.scss" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -319,12 +200,12 @@
       <updated>1513989013647</updated>
       <workItem from="1513989016023" duration="1005000" />
       <workItem from="1514318213037" duration="23642000" />
-      <workItem from="1514412713413" duration="6867000" />
+      <workItem from="1514412713413" duration="11489000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31514000" />
+    <option name="totallyTimeSpent" value="36136000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="3862" height="2122" extended-state="6" />
@@ -334,7 +215,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976556" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976007" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -470,10 +351,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scss/moebootstrap.scss">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1488">
-          <caret line="62" column="16" lean-forward="false" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="16" />
+        <state relative-caret-position="96">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -488,29 +369,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="25" column="9" lean-forward="true" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+        <state relative-caret-position="744">
+          <caret line="31" column="36" lean-forward="false" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
           <folding>
             <element signature="n#!!block;n#intializeCelebreMeans#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/scss/moebootstrap.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="28" column="25" lean-forward="true" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="1440">
+          <caret line="60" column="1" lean-forward="true" selection-start-line="60" selection-start-column="1" selection-end-line="60" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-          <folding />
+        <state relative-caret-position="600">
+          <caret line="130" column="74" lean-forward="false" selection-start-line="130" selection-start-column="74" selection-end-line="130" selection-end-column="74" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

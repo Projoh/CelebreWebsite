@@ -1,3 +1,6 @@
+// Function to change background color as you scroll
+var currentScrolling = false;
+var currentActivePanel;
 $(window).scroll(function() {
 
     // selectors
@@ -5,8 +8,34 @@ $(window).scroll(function() {
         $body = $('body'),
         $panel = $('.panel');
 
+
     // Change 33% earlier than scroll position so colour is there when you arrive.
-    var scroll = $window.scrollTop() + ($window.height() / 3);
+    var scroll = $window.scrollTop() + ($window.height() / 4);
+
+
+    if(!currentScrolling && currentActivePanel){
+        var heightOfDiv = currentActivePanel.height();
+        var halfwayThrough = currentActivePanel.position().top + Math.abs(heightOfDiv/2);
+        var goingBackwards = currentActivePanel.position().top+100;
+        if(scroll > halfwayThrough) {
+            currentScrolling = true;
+            var nextPanel = currentActivePanel.next('.panel');
+            $('html,body').animate({
+                scrollTop: nextPanel.offset().top - 10
+            }, 350, function () {
+                currentScrolling = false;
+            });
+        } else if(scroll < goingBackwards) {
+            currentScrolling = true;
+            var prevPanel = currentActivePanel.prev('.panel');
+            $('html,body').animate({
+                scrollTop: prevPanel.offset().top - 10
+            }, 350, function () {
+                currentScrolling = false;
+            });
+        }
+    }
+
 
     $panel.each(function () {
         var $this = $(this);
@@ -23,12 +52,14 @@ $(window).scroll(function() {
 
             // Add class of currently active div
             $body.addClass('color-' + $(this).data('color'));
+            currentActivePanel = $(this);
         }
+
     });
 
 }).scroll();
 
-
+// Creates the typing effect on the "celebre means ..." section
 function intializeCelebreMeans() {
     var possibleWords = ["noted", "renowned", "celebrated", "great"];
     var position = 0;
