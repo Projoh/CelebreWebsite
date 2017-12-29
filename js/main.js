@@ -13,28 +13,31 @@ $(window).scroll(function() {
     var scroll = $window.scrollTop() + ($window.height() / 4);
 
 
-    if(!currentScrolling && currentActivePanel){
-        var heightOfDiv = currentActivePanel.height();
-        var halfwayThrough = currentActivePanel.position().top + Math.abs(heightOfDiv/2);
-        var goingBackwards = currentActivePanel.position().top+100;
-        if(scroll > halfwayThrough) {
-            currentScrolling = true;
-            var nextPanel = currentActivePanel.next('.panel');
-            $('html,body').animate({
-                scrollTop: nextPanel.offset().top - 10
-            }, 350, function () {
-                currentScrolling = false;
-            });
-        } else if(scroll < goingBackwards) {
-            currentScrolling = true;
-            var prevPanel = currentActivePanel.prev('.panel');
-            $('html,body').animate({
-                scrollTop: prevPanel.offset().top - 10
-            }, 350, function () {
-                currentScrolling = false;
-            });
+    if($window.width > 750){
+        if(!currentScrolling && currentActivePanel){
+            var heightOfDiv = currentActivePanel.height();
+            var halfwayThrough = currentActivePanel.position().top + Math.abs(heightOfDiv/2);
+            var goingBackwards = currentActivePanel.position().top+100;
+            if(scroll > halfwayThrough) {
+                currentScrolling = true;
+                var nextPanel = currentActivePanel.next('.panel');
+                $('html,body').animate({
+                    scrollTop: nextPanel.offset().top - 10
+                }, 350, function () {
+                    currentScrolling = false;
+                });
+            } else if(scroll < goingBackwards) {
+                currentScrolling = true;
+                var prevPanel = currentActivePanel.prev('.panel');
+                $('html,body').animate({
+                    scrollTop: prevPanel.offset().top - 10
+                }, 350, function () {
+                    currentScrolling = false;
+                });
+            }
         }
     }
+
 
 
     $panel.each(function () {
