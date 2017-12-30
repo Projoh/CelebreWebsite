@@ -7,13 +7,14 @@ $(window).scroll(function() {
     var $window = $(window),
         $body = $('body'),
         $panel = $('.panel');
-
+    var windowWidth = $window.width();
 
     // Change 33% earlier than scroll position so colour is there when you arrive.
     var scroll = $window.scrollTop() + ($window.height() / 4);
 
 
-    if($window.width > 750){
+
+    if(windowWidth > 750){
         if(!currentScrolling && currentActivePanel){
             var heightOfDiv = currentActivePanel.height();
             var halfwayThrough = currentActivePanel.position().top + Math.abs(heightOfDiv/2);

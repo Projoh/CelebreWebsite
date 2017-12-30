@@ -1,0 +1,262 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Home - Mochila</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="scss/moebootstrap.css" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="color-green">
+<div class="collapse margin-bottom-10 bg-secondary" id="navbarToggleExternalContent">
+    <div class=" p-4">
+        <ul class="nav justify-content-end" id="navBarList">
+            <li class="nav-item" id="aboutMenuItem">
+                <a class="nav-link" href="#">OPTIONS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="goToContact()">CONTACT</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <nav class="navbar navbar-dark bg-transparent">
+        <h6 class="padding-top-10 text-secondary d-block d-md-none">University of South Florida</h6>
+        <p class="lead padding-top-10 text-secondary d-none d-md-block d-lg-block d-xl-block">University of South Florida</p>
+        <button class="navbar-toggler no-select" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+                aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="material-icons large text-white no-select">&#xE5D2;</i>
+        </button>
+
+    </nav>
+
+</div>
+
+<div class="container padding-right-left-16">
+    <div  id="progress-loader" class="loader hidden-panel">Loading...</div>
+    <div id="mochila" class="hidden-panel">
+        <p class="lead font-weight-bold text-light subtitle-main">Current Courses</p>
+        <div class="main-content">
+            <div class="row no-select highlight-to-yellow course-select-option" id="122342">
+                <div class="col-8">
+                    <h1 class="d-block d-md-none font-weight-light text-light text-truncate">Physics II <small class="text-dark d-block d-md-none">#352877</small> </h1>
+                    <h1 class="d-none d-md-block d-lg-block d-xl-block display-4 font-weight-light text-light">Physics II <small class="text-dark">#352877</small> </h1>
+                </div>
+                <div class="col align-self-center text-right padding-top-bottom">
+                    <i class="material-icons large text-light">&#xE315;</i>
+                </div>
+            </div>
+            <div class="row no-select highlight-to-yellow course-select-option">
+                <div class="col-8">
+                    <h1 class="d-block d-md-none font-weight-light text-light text-truncate">Chemistry I <small class="text-dark d-block d-md-none">#135312</small> </h1>
+                    <h1 class="d-none d-md-block d-lg-block d-xl-block display-4 font-weight-light text-light">Chemistry I <small class="text-dark">#352877</small> </h1>
+                </div>
+                <div class="col align-self-center text-right padding-top-bottom">
+                    <i class="material-icons large text-light">&#xE315;</i>
+                </div>
+            </div>
+            <div class="row no-select highlight-to-yellow course-select-option">
+                <div class="col-8">
+                    <h1 class="d-block d-md-none font-weight-light text-light text-truncate">Intro To Literature <small class="text-dark d-block d-md-none">#93821</small> </h1>
+                    <h1 class="d-none d-md-block d-lg-block d-xl-block display-4 font-weight-light text-light">Intro To Lit <small class="text-dark">#352877</small> </h1>
+                </div>
+                <div class="col align-self-center text-right padding-top-bottom">
+                    <i class="material-icons large text-light">&#xE315;</i>
+                </div>
+            </div>
+            <div class="row no-select highlight-to-yellow course-select-option">
+                <div class="col-8">
+                    <h1 class="d-block d-md-none font-weight-light text-light text-truncate">Mathematics <small class="text-dark d-block d-md-none">#23142</small> </h1>
+                    <h1 class="d-none d-md-block d-lg-block d-xl-block display-4 font-weight-light text-light">Mathematics <small class="text-dark">#352877</small> </h1>
+                </div>
+                <div class="col align-self-center text-right padding-top-bottom">
+                    <i class="material-icons large text-light">&#xE315;</i>
+                </div>
+            </div>
+
+        </div>
+        <p class="lead font-weight-bold text-light subtitle-main">Upcoming Assignments</p>
+
+    </div>
+
+    <div id="dateselect" class="hidden-panel" data-crn="123">
+
+        <p class="lead font-weight-bold text-light subtitle-select-date">Select a Module</p>
+
+
+        <div class="all-modules">
+            <div class="row no-select highlight-to-yellow">
+                <div class="col-9">
+                    <h1 class="d-block d-md-none font-weight-light text-light text-truncate">Week One <small class="text-dark d-block d-md-none" onclick="editWeekTitle('crn')">Click here to add a title</small> </h1>
+                    <h1 class="d-none d-md-block d-lg-block d-xl-block display-4 font-weight-light text-light">Week One <small class="text-dark" onclick="editWeekTitle('crn')">Click here to add a title</small> </h1>
+                </div>
+                <div class="col align-self-center text-right padding-top-bottom">
+                    <i class="material-icons large text-light">&#xE315;</i>
+                </div>
+            </div>
+            <div class="row no-select highlight-to-yellow">
+                <div class="col-9">
+                    <h1 class="d-block d-md-none font-weight-light text-light text-truncate">Week Two <small class="text-dark d-block d-md-none" onclick="editWeekTitle('crn')">Chapter 3: Polynomials</small> </h1>
+                    <h1 class="d-none d-md-block d-lg-block d-xl-block display-4 font-weight-light text-light">Week Two <small class="text-dark" onclick="editWeekTitle('crn')">Chapter 3: Polynomials</small> </h1>
+                </div>
+                <div class="col align-self-center text-right padding-top-bottom">
+                    <i class="material-icons large text-light">&#xE315;</i>
+                </div>
+            </div>
+            <div class="row no-select highlight-to-yellow">
+                <div class="col-9">
+                    <h1 class="d-block d-md-none font-weight-light text-light text-truncate">Week Three <small class="text-dark d-block d-md-none" onclick="editWeekTitle('crn')">Chapter 4: Advanced Math</small> </h1>
+                    <h1 class="d-none d-md-block d-lg-block d-xl-block display-4 font-weight-light text-light">Week Three <small class="text-dark" onclick="editWeekTitle('crn')">Chapter 4: Advanced Math</small> </h1>
+                </div>
+                <div class="col align-self-center text-right padding-top-bottom">
+                    <i class="material-icons large text-light">&#xE315;</i>
+                </div>
+            </div>
+            <div class="row no-select highlight-to-yellow">
+                <div class="col-9">
+                    <h1 class="d-block d-md-none font-weight-light text-light text-truncate">Week Four <small class="text-dark d-block d-md-none" onclick="editWeekTitle('crn')">Click here to add a title</small> </h1>
+                    <h1 class="d-none d-md-block d-lg-block d-xl-block display-4 font-weight-light text-light">Week Four <small class="text-dark" onclick="editWeekTitle('crn')">Click here to add a title</small> </h1>
+                </div>
+                <div class="col align-self-center text-right padding-top-bottom">
+                    <i class="material-icons large text-light">&#xE315;</i>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="course-page" class="hidden-panel">
+        <div class="text-center"><p class="text-secondary"><test class="padding-right-left-16">Notes </test>Questions</p></div>
+        <div class="jumbotron mouse-pointer hovering-shadow-large bg-secondary">
+            <h1 class="display-4">Look at the notes taken this week!</h1>
+            <p class="lead">Your classmates took 412 text notes, uploaded 12 images, and asked 32 questions.</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#mochila" role="button">View Notes</a>
+            </p>
+        </div>
+
+
+        <div class="alert alert-primary mouse-pointer hovering-shadow-small" role="alert" onclick="viewAllModules();">
+            View questions from this week
+            <i class="float-right material-icons">&#xE315;</i>
+        </div>
+
+        <div class="alert alert-primary mouse-pointer hovering-shadow-small" role="alert" onclick="viewAllModules();">
+            View all course Modules
+            <i class="float-right material-icons">&#xE315;</i>
+        </div>
+
+
+
+        <p class="lead font-weight-bold text-light subtitle-course">Next Assignments Due</p>
+        <div class="row no-select highlight-to-yellow">
+            <div class="col-8">
+                <p class="d-block d-md-none font-weight-light lead text-success text-truncate">HW in 1 Days
+                    <small class="text-light d-block d-md-none">Homework #4: Polynomials</small> </p>
+                <p class="d-none d-md-block d-lg-block d-xl-block h2 font-weight-light text-success">HW in 1 Days <small class="text-light">Homework #4: Polynomials</small> </p>
+            </div>
+            <div class="col align-self-center text-right padding-top-bottom">
+                <i class="material-icons text-light">&#xE5D4;</i>
+            </div>
+        </div>
+        <div class="row no-select highlight-to-yellow">
+            <div class="col-8">
+                <p class="d-block d-md-none font-weight-light lead text-light text-truncate">HW in 3 Days
+                    <small class="text-light d-block d-md-none">Homework #5: Other Math</small> </p>
+                <p class="d-none d-md-block d-lg-block d-xl-block h2 font-weight-light text-light">HW in 3 Days <small class="text-light">Homework #5: Other Math</small> </p>
+            </div>
+            <div class="col align-self-center text-right padding-top-bottom">
+                <i class="material-icons text-light">&#xE5D4;</i>
+            </div>
+        </div>
+        <div class="row no-select highlight-to-yellow">
+            <div class="col-8">
+                <p class="d-block d-md-none font-weight-light lead text-success text-truncate">Exam in 4 Days
+                    <small class="text-light d-block d-md-none">Exam #1: Polynomials</small> </p>
+                <p class="d-none d-md-block d-lg-block d-xl-block h2 font-weight-light text-success">EXAM in 4 Days <small class="text-">Exam #1: Polynomials</small> </p>
+            </div>
+            <div class="col align-self-center text-right padding-top-bottom">
+                <i class="material-icons text-light">&#xE5D4;</i>
+            </div>
+        </div>
+        <div class="row no-select highlight-to-yellow">
+            <div class="col-8">
+                <p class="d-block d-md-none font-weight-light lead text-light text-truncate">HW in 6 Days
+                    <small class="text-light d-block d-md-none">Homework #6: Advanced Math</small> </p>
+                <p class="d-none d-md-block d-lg-block d-xl-block h2 font-weight-light text-light">HW in 6 Days <small class="text-">Homework #6: Advanced Math</small> </p>
+            </div>
+            <div class="col align-self-center text-right padding-top-bottom">
+                <i class="material-icons text-light">&#xE5D4;</i>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Week One</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label  class="col-form-label">Title:</label>
+                        <input class="form-control form-control-lg" type="text" placeholder="Chapter 1: Polynomials">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+</body>
+<script src="js/vendor/modernizr-3.5.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script src="js/plugins.js"></script>
+<script src="js/home.js"></script>
+
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+</html>
