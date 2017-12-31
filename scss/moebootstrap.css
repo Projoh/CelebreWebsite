@@ -6428,8 +6428,8 @@ body {
 .padding-bottom-30 {
   padding-bottom: 32px; }
 
-.padding-bottom-200 {
-  padding-bottom: 192px; }
+.padding-bottom-400 {
+  padding-bottom: 384px; }
 
 .padding-right-left-16 {
   padding-left: 16px;
@@ -6437,6 +6437,9 @@ body {
 
 .padding-bottom-10 {
   padding-bottom: 12px; }
+
+.margin-bottom-20 {
+  margin-bottom: 24px; }
 
 .main-content {
   opacity: 0; }
@@ -6460,5 +6463,19 @@ input.weektitle {
 
 .hovering-shadow-small {
   box-shadow: 5px 2px 2px darkgreen; }
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #2E7D32;
+  opacity: 1;
+  /* Firefox */ }
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #2E7D32; }
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #2E7D32; }
 
 /*# sourceMappingURL=moebootstrap.css.map */

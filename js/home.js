@@ -71,7 +71,6 @@ function initializeHighLightOnHover() {
 }
 
 
-// Not real
 function fadeInFromBottom(object, speed) {
     object.css("padding-top", "32px");
     object.animate({
@@ -127,11 +126,6 @@ function viewAllModules(crn) {
     location.hash = crn + '#dateselect';
 }
 
-function scrollToTop() {
-    $("html, body").animate({ scrollTop: 0 }, SPEED_SLOW);
-}
-
-
 function changePage(newLocation) {
     if(currentPage) {
         fadeOutToLeft(currentPage, SPEED_MEDIUM, showNextPage)
@@ -183,6 +177,13 @@ function dateselect(CRN) {
     toggleLoader(false);
     fadeInFromBottom(currentPage, SPEED_MEDIUM);
 }
+
+
+function scrollToTop() {
+    $("html, body").animate({ scrollTop: 0 }, SPEED_SLOW);
+}
+
+
 
 $(window).on('hashchange', function() {
     changePage('' + location.hash);

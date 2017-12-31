@@ -21,4 +21,23 @@
     }
 }());
 
+
+
+
 // Place any jQuery/helper plugins in here.
+intializeFirebase();
+
+
+
+function intializeFirebase() {
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDAQ6XGtO7wdOB-y-e6ApA3WjPh9AZCYww",
+        authDomain: "celebre-45714.firebaseapp.com",
+        databaseURL: "https://celebre-45714.firebaseio.com",
+        projectId: "celebre-45714",
+        storageBucket: "celebre-45714.appspot.com",
+        messagingSenderId: "71736615331"
+    };
+    firebase.initializeApp(config);
+}

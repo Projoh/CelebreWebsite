@@ -17,7 +17,7 @@ $(window).scroll(function() {
     if(windowWidth > 750){
         if(!currentScrolling && currentActivePanel){
             var heightOfDiv = currentActivePanel.height();
-            var halfwayThrough = currentActivePanel.position().top + Math.abs(heightOfDiv/2);
+            var halfwayThrough = currentActivePanel.position().top + Math.abs(heightOfDiv/1.3);
             var goingBackwards = currentActivePanel.position().top+100;
             if(scroll > halfwayThrough) {
                 currentScrolling = true;
