@@ -86,11 +86,11 @@
 
     <div class="panel" id="mainPanel">
         <h1 class="display-3 text-white">Sign-up</h1>
-        <p class="h5 text-dark">Authorize yourself through one the following services.</p>
+        <p class="h5 text-dark margin-bottom-20">Authorize yourself through one the following services.</p>
 
-        <button type="button" class="btn padding-top-bottom btn-outline-light btn-lg btn-block hovering-shadow-small" onclick="signUpGoogle()">Sign up with Google</button>
-        <button type="button" class="btn padding-top-bottom btn-outline-light btn-lg btn-block hovering-shadow-small" onclick="signUpFacebook()">Sign up with Facebook</button>
-        <button type="button" class="margin-bottom-20  padding-top-bottom btn btn-outline-light btn-lg btn-block hovering-shadow-small" onclick="goToPhoneNumber()">Sign up with Phone Number</button>
+        <button type="button" class="btn padding-top-bottom btn-danger btn-lg btn-block hovering-shadow-small" onclick="signUpGoogle()">Sign up with Google</button>
+        <button type="button" class="btn padding-top-bottom btn-info btn-lg btn-block hovering-shadow-small" onclick="signUpFacebook()">Sign up with Facebook</button>
+        <button type="button" class="margin-bottom-20  padding-top-bottom btn btn-light btn-lg btn-block hovering-shadow-small" onclick="goToPhoneNumber()">Sign up with Phone Number</button>
 
         <div class="padding-bottom-60"></div>
         <div class="float-right">
@@ -106,7 +106,52 @@
         </form>
     </div>
 
+    <div class="panel whole-page manual-entry subtitle hidden-panel">
 
+        <h6 class="text-light mouse-pointer panel-back-button"><i class="material-icons navbar-toggler-icon">&#xE5C4;</i></h6>
+
+        <h1 class="large text-white">What's your email?</h1>
+        <p class="h6 text-dark">This is private information and will not be visible to other users.</p>
+        <form id="emailForm">
+            <input style="visibility: hidden;" class="toggle"><br>
+            <input class="form-control-lg medium weektitle text-success" type="email" id="emailInput" placeholder="email@mail.com"><br><br>
+            <button type="submit" class="float-right btn btn-lg btn-secondary hovering-shadow-small" onclick="manualEnterEmail();">Enter</button>
+        </form>
+
+
+    </div>
+
+    <div class="panel whole-page manual-entry subtitle hidden-panel">
+
+        <h6 class="text-light mouse-pointer panel-back-button"><i class="material-icons navbar-toggler-icon">&#xE5C4;</i></h6>
+
+        <h1 class="large text-white">Enter a password</h1>
+        <p class="h5 text-dark">You will use this to login in the future.</p>
+        <p class="h5 text-danger font-weight-bold" id="password-error"></p>
+        <form id="passwordForm">
+            <input style="visibility: hidden;" class="toggle"><br>
+            <input class="form-control-lg large weektitle" type="password" id="passwordInput" placeholder="password"><br><br>
+            <button type="submit" class="float-right btn btn-lg btn-secondary hovering-shadow-small" onclick="submitPassword();">Enter</button>
+        </form>
+
+
+    </div>
+
+    <div class="panel whole-page subtitle hidden-panel">
+
+        <h6 class="text-light mouse-pointer panel-back-button"><i class="material-icons navbar-toggler-icon">&#xE5C4;</i></h6>
+
+        <h1 class="large text-white">Enter a display name</h1>
+        <p class="h5 text-light">This is public and will be shown with your submitted content.</p>
+        <p class="h5 text-danger font-weight-bold" id="username-error"></p>
+        <form id="usernameForm">
+            <input style="visibility: hidden;" class="toggle"><br>
+            <input class="form-control-lg padding-bottom-30 large weektitle" type="text" id="username" placeholder="bobnotes12">
+            <button type="submit" class="float-right btn btn-lg btn-secondary hovering-shadow-small" onclick="enterDisplayName();">Enter</button>
+        </form>
+
+
+    </div>
 
 
 
@@ -118,12 +163,34 @@
             <input type="submit" style="visibility: hidden;" >
         </form>
         <h1 class="large text-white">Turn on location services to find Universities</h1>
+        <p class="h5 text-danger font-weight-bold" id="location-error"></p>
         <p class="h5 text-dark">Celebre needs your location initially in order to match you only with universities that are near you. This is to prevent others from joining universities they are not enrolled in.</p>
 
         <button type="button" class=" float-right btn btn-lg btn-secondary hovering-shadow-small" onclick="requestLocation()">Okay</button>
 
 
     </div>
+
+    <div class="panel whole-page subtitle hidden-panel">
+
+        <h1 class="large text-white">Select a University</h1>
+        <form id="selectSchool">
+            <input style="visibility: hidden;" class="toggle">
+            <select class="form-control form-control-lg">
+                <option value="usf_1">University of South Florida</option>
+            </select>
+            <input type="submit" style="visibility: hidden;" >
+        </form>
+
+        <button type="button" class=" float-right btn btn-lg btn-secondary hovering-shadow-small margin-bottom-20" onclick="requestLocation()">Continue</button><br><br>
+
+        <p class="h5 text-dark padding-top-bottom">Cant find your university? You may not be close enough to the university or we may not yet support your university<br>
+            We only support a small list of schools currently, and are working to expand as fast as possible.</p>
+
+
+    </div>
+
+
 
 
 
