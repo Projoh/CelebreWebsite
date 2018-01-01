@@ -208,6 +208,7 @@ function submitVerfCode() {
         // User signed in successfully.
         phoneNumber = $('#staticNumber').val();
         processNewUser(result.user);
+        markFormAsCompletedAndSubmit($('#phoneNumberAuth2'))
     }).catch(function (error) {
         // User couldn't sign in (bad verification code?)
         // ...

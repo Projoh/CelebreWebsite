@@ -88,10 +88,16 @@
         <h1 class="display-3 text-white">Sign-up</h1>
         <p class="h5 text-dark margin-bottom-20">Authorize yourself through one the following services.</p>
 
-        <button type="button" class="btn padding-top-bottom btn-danger btn-lg btn-block hovering-shadow-small" onclick="signUpGoogle()">Sign up with Google</button>
-        <button type="button" class="btn padding-top-bottom btn-info btn-lg btn-block hovering-shadow-small" onclick="signUpFacebook()">Sign up with Facebook</button>
-        <button type="button" class="margin-bottom-20  padding-top-bottom btn btn-light btn-lg btn-block hovering-shadow-small" onclick="goToPhoneNumber()">Sign up with Phone Number</button>
-
+        <div class="d-block d-md-none">
+            <button type="button" class="btn padding-top-bottom btn-danger btn-lg btn-block hovering-shadow-small" onclick="signUpGoogle()">Sign up with Google</button>
+            <button type="button" class="btn padding-top-bottom btn-info btn-lg btn-block hovering-shadow-small" onclick="signUpFacebook()">Sign up with Facebook</button>
+            <button type="button" class="margin-bottom-20  padding-top-bottom btn btn-light btn-lg btn-block hovering-shadow-small" onclick="goToPhoneNumber()">Sign up with Phone Number</button>
+        </div>
+        <div class="d-none d-md-block d-lg-block d-xl-block w-50">
+            <button type="button" class="btn padding-top-bottom btn-danger btn-lg btn-block hovering-shadow-small" onclick="signUpGoogle()">Sign up with Google</button><br>
+            <button type="button" class="btn padding-top-bottom btn-info btn-lg btn-block hovering-shadow-small" onclick="signUpFacebook()">Sign up with Facebook</button><br>
+            <button type="button" class="margin-bottom-20  padding-top-bottom btn btn-light btn-block btn-lg hovering-shadow-small" onclick="goToPhoneNumber()">Sign up with Phone Number</button><br>
+        </div>
         <div class="padding-bottom-60"></div>
         <div class="float-right">
             <p class="text-dark">or you can input your information manually</p>
