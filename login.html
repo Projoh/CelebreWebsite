@@ -1,0 +1,200 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Celebre - Login</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="scss/moebootstrap.css" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="bg-primary">
+<div class="collapse margin-bottom-10 bg-secondary" id="navbarToggleExternalContent">
+    <div class=" p-4">
+        <ul class="nav justify-content-end" id="navBarList">
+            <li class="nav-item" id="aboutMenuItem">
+                <a class="nav-link" href="#">HOME</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="">CONTACT</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <nav class="navbar navbar-dark bg-transparent">
+        <h6 class="padding-top-10 text-secondary d-block d-md-none">Celebre</h6>
+        <p class="lead padding-top-10 text-secondary d-none d-md-block d-lg-block d-xl-block">Celebre</p>
+        <button class="navbar-toggler no-select" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+                aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="material-icons large text-white no-select">&#xE5D2;</i>
+        </button>
+
+    </nav>
+
+</div>
+
+<div class="container">
+    <div class="panel whole-page subtitle hidden-panel">
+
+        <h6 class="text-light mouse-pointer go-to-first"><i class="material-icons navbar-toggler-icon">&#xE5C4;</i></h6>
+
+        <h1 class="large text-white">Enter your Phone Number</h1>
+        <p class="h5 text-dark">We'll send you a verification text message. <br><br> SMS standard rates apply.</p>
+        <form id="phoneNumberAuth">
+            <input style="visibility: hidden;" class="toggle">
+            <div class="row">
+                <label for="staticNumber" class="col-1 col-form-label large">+1</label>
+                <div class="col-9">
+                    <input type="number" class="form-control-lg large weektitle" id="staticNumber" placeholder="8131231234">
+                </div>
+            </div>
+            <button type="submit" class="float-right btn btn-lg btn-secondary hovering-shadow-small" onclick="signUpPhoneNumber();" id="submitPhoneNumber">Submit Number</button>
+        </form>
+    </div>
+
+    <div class="panel whole-page subtitle hidden-panel">
+
+        <h6 class="text-light mouse-pointer panel-back-button"><i class="material-icons navbar-toggler-icon">&#xE5C4;</i></h6>
+
+        <h1 class="large text-white">Verification Code</h1>
+        <p class="h5 text-dark">Check your phone, we just sent you a verification number.</p>
+        <form id="phoneNumberAuth2">
+            <input style="visibility: hidden;" class="toggle">
+            <div class="row">
+                <div class="col">
+                    <input type="number" class="form-control-lg large weektitle" id="staticVerfCode" placeholder="123456">
+                </div>
+            </div>
+            <button type="submit" class="float-right btn btn-lg btn-secondary hovering-shadow-small" onclick="submitVerfCode();">Enter</button>
+        </form>
+    </div>
+
+
+
+
+    <div class="panel" id="mainPanel">
+        <h1 class="display-3 margin-top-none text-white text-center">Login</h1>
+        <p class="h5 text-danger text-center" id="loginErrorMessage"></p>
+
+        <div class="row" id="customAuth">
+            <div class="col-12">
+            </div>
+            <div class="col-9 align-content-center">
+                <p class="h5 text-dark margin-bottom-20 float-right">Login with the same service you registered with.</p>
+            </div>
+            <div class="col-12">
+                <div class="d-block d-md-none">
+                    <button type="button" class="btn padding-top-bottom btn-danger btn-lg btn-block hovering-shadow-small" onclick="loginWithGoogle()">Sign in with Google</button>
+                    <button type="button" class="btn padding-top-bottom btn-info btn-lg btn-block hovering-shadow-small" onclick="loginWithFacebook()">Sign in with Facebook</button>
+                    <button type="button" class="margin-bottom-20  padding-top-bottom btn btn-light btn-lg btn-block hovering-shadow-small" onclick="showLoginWithPhoneNumber()">Sign in with Phone Number</button>
+                </div>
+            </div>
+            <div class="row w-75">
+                <div class="d-none d-md-block d-lg-block d-xl-block offset-4 col-9">
+                        <button type="button" class="btn padding-top-bottom btn-danger btn-lg btn-block hovering-shadow-small" onclick="loginWithGoogle()">Sign in with Google</button><br>
+                        <button type="button" class="btn padding-top-bottom btn-info btn-lg btn-block hovering-shadow-small" onclick="loginWithFacebook()">Sign in with Facebook</button><br>
+                        <button type="button" class="margin-bottom-20  padding-top-bottom btn btn-light btn-block btn-lg hovering-shadow-small" onclick="showLoginWithPhoneNumber()">Sign in with Phone Number</button><br>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row subtitle hidden-panel" id="manual-info">
+            <div class="d-block d-md-none w-100">
+                <div class="col-12 padding-bottom-30">
+                    <input class="form-control form-control-lg" type="text" placeholder="email@email.com" id="emailSmall">
+                </div>
+                <div class="col-12">
+                    <input class="form-control form-control-lg" type="password" placeholder="password" id="passwordSmall">
+                </div>
+            </div>
+
+            <div class="d-none d-md-block d-lg-block d-xl-block offset-3 col-6 ">
+                <div class="col-12 padding-bottom-30">
+                    <input class="form-control form-control-lg" type="text" placeholder="email@email.com" id="emailLarge">
+                </div>
+                <div class="col-12">
+                    <input class="form-control form-control-lg" type="password" placeholder="password" id="passwordLarge">
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+        <div class="padding-bottom-30"></div>
+        <div class="text-center">
+            <p class="text-dark">or you can input your information manually</p>
+            <button id="enterEmailPasswordButton" class="btn btn-lg btn-outline-secondary margin-bottom-20" onclick="showManualEnterInfo();">Enter email and password</button>
+            <button id="submitEmailPasswordButton" class="btn btn-lg btn-light hovering-shadow-small padding-right-left-16 subtitle hidden-panel margin-bottom-20" onclick="signInWithEmailAndPassword();">Submit</button>
+            <p class="h6 text-info"><a href="register.html" class="text-info">Register instead</a></p>
+        </div>
+
+
+
+        <form id="initialauth">
+            <input style="visibility: hidden;" class="toggle">
+            <input type="submit" style="visibility: hidden;" >
+        </form>
+    </div>
+
+
+    <div class="modal fade" id="userDoesntExistPopUp" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">User hasn't registered</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    This account does not seem to exist in our database, are you sure you used this login method to sign up?
+                </div>
+                <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="logOut()">Try another login</button>
+                            <button type="button" class="btn btn-primary" onclick="rediretToRegister()">Register with this account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js"></script>
+<script src="js/vendor/modernizr-3.5.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script src="js/plugins.js"></script>
+<script src="js/login.js"></script>
+
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-80849181-2','auto');ga('send','pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+</html>

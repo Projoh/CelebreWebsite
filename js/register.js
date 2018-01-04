@@ -2,6 +2,18 @@ function initializeAuthStateListener() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             // User is signed in.
+            firebase.database().ref('/users/' + user.uid +'/username').once('value').then(function(snapshot) {
+                var usersnap = snapshot.val();
+                if(usersnap) {
+                    showSnackBar("User already registered. Redirecting you to the home page");
+                    setTimeout(redirectDelay, 1000);
+                    return;
+
+                    function redirectDelay() {
+                        document.location = 'home.html';
+                    }
+                }
+            });
             if(createUserWithPassword) {
                 processNewUser(user);
             }
@@ -11,11 +23,24 @@ function initializeAuthStateListener() {
     });
 }
 
+function intializeVerfCodeListener() {
+    var verfCode = $('#staticVerfCode');
+
+    verfCode.on("change paste keyup", function() {
+        var vCode = $(this);
+        var value = vCode.val();
+        if (value.length > 5) {
+            submitVerfCode();
+        }
+    });
+}
+
 $( document ).ready(function() {
     intializePanelPageMover();
     initializeSignupRedirectListener();
     initializeInvisibleCaptcha();
     initializeAuthStateListener();
+    intializeVerfCodeListener();
 });
 
 const SPEED_SLOW = 200; // Full page transitions
@@ -24,7 +49,7 @@ const SPEED_FAST = 150; // Leaving Screen
 
 var user;
 var name="", email="", photoUrl="", uid="", emailVerified="",timeStamp="",
-    username="",lat="",long ="";
+    username="",lat="",long ="",schoolCode="";
 var phoneNumber = "";
 
 var database = firebase.database();
@@ -39,7 +64,21 @@ function initializeSignupRedirectListener() {
         // The signed-in user info.
         user = result.user;
         if(user) {
-            processNewUser(user);
+            firebase.database().ref('/users/' + user.uid +'/username').once('value').then(function(snapshot) {
+                var usersnap = snapshot.val();
+                if (usersnap) {
+                    showSnackBar("User already registered. Redirecting you to the login page");
+                    firebase.auth().signOut().then(function() {
+                        // Sign-out successful.
+                    }).catch(function(error) {
+                        // An error happened.
+                    });
+                    return;
+                }
+
+                processNewUser(user);
+            });
+
         }
     }).catch(function(error) {
         // Handle Errors here.
@@ -53,6 +92,15 @@ function initializeSignupRedirectListener() {
     });
 
 
+}
+
+function readDataOnce(location, thenFunction) {
+    firebase.database().ref(location).once('value').then(function(snapshot) {
+        var snapcshotVal = snapshot.val();
+        if (snapcshotVal) {
+            thenFunction(snapcshotVal);
+        }
+    });
 }
 
 function intializePanelPageMover() {
@@ -130,22 +178,22 @@ function resetForm(form) {
 
 function signUpPhoneNumber() {
     scrollToTop();
-        phoneNumber = '+1' + $('#staticNumber').val();
-        var appVerifier = window.recaptchaVerifier;
-        firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
-            .then(function (confirmationResult) {
-                // SMS sent. Prompt user to type the code from the message, then sign the
-                // user in with confirmationResult.confirm(code).
-                var phoneNumberForm = $('#phoneNumberAuth');
-                window.confirmationResult = confirmationResult;
-                markFormAsCompletedAndSubmit(phoneNumberForm);
-            }).catch(function (error) {
-            // Error; SMS not sent
-            // ...
-            window.recaptchaVerifier.render().then(function(widgetId) {
-                grecaptcha.reset(widgetId);
-            });
+    phoneNumber = '+1' + $('#staticNumber').val();
+    var appVerifier = window.recaptchaVerifier;
+    firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
+        .then(function (confirmationResult) {
+            // SMS sent. Prompt user to type the code from the message, then sign the
+            // user in with confirmationResult.confirm(code).
+            var phoneNumberForm = $('#phoneNumberAuth');
+            window.confirmationResult = confirmationResult;
+            markFormAsCompletedAndSubmit(phoneNumberForm);
+        }).catch(function (error) {
+        // Error; SMS not sent
+        // ...
+        window.recaptchaVerifier.render().then(function(widgetId) {
+            grecaptcha.reset(widgetId);
         });
+    });
 }
 
 function processNewUser(user) {
@@ -194,7 +242,12 @@ function updateUserDataOnServer(nextfunction) {
         phone_number: phoneNumber,
         register_cords: lat + "_" + long,
         username: username,
-        timestamp: timeStamp
+        courses_enrolled: "",
+        last_question_asked: timeStamp,
+        school_id: schoolCode,
+        register_time: timeStamp,
+        last_login: timeStamp,
+        last_question_asked_time: timeStamp
     }).then(function () {
         if(nextfunction){
             nextfunction();
@@ -203,6 +256,7 @@ function updateUserDataOnServer(nextfunction) {
 }
 
 function submitVerfCode() {
+    scrollToTop();
     var code = $('#staticVerfCode').val();
     confirmationResult.confirm(code).then(function (result) {
         // User signed in successfully.
@@ -210,9 +264,22 @@ function submitVerfCode() {
         processNewUser(result.user);
         markFormAsCompletedAndSubmit($('#phoneNumberAuth2'))
     }).catch(function (error) {
-        // User couldn't sign in (bad verification code?)
-        // ...
+        var staticNum = $('#staticNumber');
+        showSnackBar("Verifcation Code was incorrect, please try again.");
+        staticNum.html("");
     });
+}
+
+function enterUniversity() {
+    var univSelectorFormControl = document.getElementById("universitySelector");
+    schoolCode = univSelectorFormControl.options[univSelectorFormControl.selectedIndex].value;
+
+    updateUserDataOnServer(continueFunction());
+
+    function continueFunction() {
+        markFormAsCompletedAndSubmit($('#selectSchool'));
+        document.location = "courseadd.html";
+    }
 }
 
 function goToPhoneNumber() {
@@ -258,8 +325,8 @@ function requestLocation() {
 }
 
 function storeUserLocation(position) {
-   lat = position.coords.latitude;
-   long = position.coords.longitude;
+    lat = position.coords.latitude;
+    long = position.coords.longitude;
 }
 
 function positionSuccess(position) {
@@ -347,7 +414,7 @@ function enterDisplayName() {
             return;
         }
         firebase.database().ref('/usernames/' + userText.toLowerCase()).once('value').then(function(snapshot) {
-            var usersnap = (snapshot.val() && snapshot.val().username);
+            var usersnap = snapshot.val();
             if(usersnap) {
                 showUsernameError("Username is already taken.<br> Please try another one");
                 return;
@@ -399,6 +466,21 @@ function sanitizeInput(input) {
     return input.replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
 }
 
-function User() {
+function encodeText(text) {
+    return encodeURIComponent(text).replace(/\./g, '%2E');
+}
 
+function decodeText(text) {
+    return decodeURIComponent(text.replace('%2E', '.'));
+}
+
+function showSnackBar(message) {
+    var snackBarItem = document.getElementById("snackbar")
+
+    // Add the "show" class to DIV
+    snackBarItem.className = "show";
+    snackBarItem.innerHTML = message;
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ snackBarItem.className = snackBarItem.className.replace("show", ""); }, 3000);
 }

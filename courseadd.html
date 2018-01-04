@@ -1,0 +1,194 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add a Course</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="scss/moebootstrap.css" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="bg-primary">
+<div class="collapse margin-bottom-10 bg-secondary" id="navbarToggleExternalContent">
+    <div class=" p-4">
+        <ul class="nav justify-content-end" id="navBarList">
+            <li class="nav-item" id="aboutMenuItem">
+                <a class="nav-link" href="#">OPTIONS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="goToContact()">CONTACT</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <nav class="navbar navbar-dark bg-transparent">
+        <h6 class="padding-top-10 text-secondary d-block d-md-none">Celebre</h6>
+        <p class="lead padding-top-10 text-secondary d-none d-md-block d-lg-block d-xl-block">Celebre</p>
+        <button class="navbar-toggler no-select" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+                aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="material-icons large text-white no-select">&#xE5D2;</i>
+        </button>
+
+    </nav>
+
+</div>
+
+<div class="container">
+
+    <div id="snackbar"></div>
+
+
+
+    <div class="panel whole-page" id="addCoursePanel">
+        <h1 class="large text-white">Enter Course Reference Number(CRN)</h1>
+        <p class="h5 text-light">Join a course with your peers by inputting the course CRN.
+            The CRN can be found in the course search registrar, you inputed it when enrolling into
+            the course.</p>
+        <p class="h5 text-danger" id="courseAddError"></p>
+        <form id="addCourse" class="">
+            <input style="visibility: hidden;" class="toggle">
+            <div class="form-group">
+                <input class="form-control-lg weektitle large w-75" type="text" placeholder="14493" id="courseIDElement">
+            </div>
+            <input type="submit" style="visibility: hidden;" >
+        </form>
+        <button type="button" class="mouse-pointer float-right btn btn-lg btn-secondary hovering-shadow-small" onclick="addCoursebutton()">Add Course</button>
+        <button type="button" class="mouse-pointer float-right btn btn-lg btn-outline-info margin-right-32" onclick="directToHome()">Go Home</button>
+
+
+    </div>
+
+    <div class="panel whole-page subtitle hidden-panel" id="courseDaysMeetPanel">
+        <h6 class="text-light mouse-pointer panel-back-button"><i class="material-icons navbar-toggler-icon">&#xE5C4;</i></h6>
+        <h1 class="large text-white">Enter Course Title</h1>
+        <p class="h5 text-light">Ex. Physics One</p>
+        <p class="h5 text-danger" id="courseTitleError"></p>
+        <form id="courseTitleForm" class="">
+            <input style="visibility: hidden;" class="toggle">
+            <div class="form-group">
+                <input class="form-control-lg weektitle large w-75" type="text" placeholder="Calculus Two" id="courseTitle">
+            </div>
+            <input type="submit" style="visibility: hidden;" >
+        </form>
+        <h5 class="text-dark float-right">Almost done! One more question</h5><br><br>
+        <button type="button" class="mouse-pointer float-right btn btn-lg btn-outline-success margin-right-32" onclick="submitManualCourseTitle()">Next</button>
+    </div>
+
+    <div class="panel whole-page subtitle hidden-panel" id="courseDaysPanel">
+        <h6 class="text-light mouse-pointer panel-back-button"><i class="material-icons navbar-toggler-icon">&#xE5C4;</i></h6>
+        <h1 class="large text-white">What days does this course meet?</h1>
+        <p class="h5 text-dark">Ex. Monday and Wednesday</p>
+        <p class="h5 text-danger" id="courseDaysError"></p>
+        <form id="courseDaysForm" class="">
+            <input style="visibility: hidden;" class="toggle">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <select class="form-control form-control-lg" id="dayOneSelector">
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 col-sm-12 text-center">
+                        <p class="lead padding-top-bottom padding-right-left-16 text-dark">AND</p>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <select class="form-control form-control-lg" id="dayTwoSelector">
+                            <option value="NA">N/A</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </div>
+                </div>
+
+
+            </div>
+            <input type="submit" style="visibility: hidden;" >
+        </form>
+        <button type="button" class="mouse-pointer float-right btn btn-lg btn-outline-success margin-right-32" onclick="submitNewCourse()">Enter Course</button>
+    </div>
+
+
+
+
+</div>
+
+
+<div class="modal fade" id="correctCourseQuestion" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Does the title of this course look correct?</h5>
+            </div>
+            <div class="modal-body">
+                CRN: <custom id="CRN-correctQuestion">1234</custom><br>
+                Title: <custom id="title-correctQuestion">Physics One</custom>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="incorrectTitle()">No</button>
+                <button type="button" class="btn btn-primary" onclick="correctTitle()">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="enterTitleModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">What is the title of the class?</h5>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" type="text" id="title-of-class" placeholder="Physics 1">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="submitNewTitle()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js"></script>
+<script src="js/vendor/modernizr-3.5.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script src="js/plugins.js"></script>
+<script src="js/courseadd.js"></script>
+
+<script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-80849181-2','auto');ga('send','pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+</html>

@@ -69,7 +69,7 @@ function intializeCelebreMeans() {
     var position = 0;
     var addNewWordInterval;
     setInterval(checkAndUpdatePointer, 500);
-    setInterval(cycleToNewWord, 8000);
+    setInterval(cycleToNewWord, 4000);
 
     function checkAndUpdatePointer() {
         var customTextObject = $('custom.celebre-means');

@@ -44,23 +44,24 @@
 
 </div>
 <div class="container">
+    <div id="snackbar"></div>
 
     <div class="panel whole-page subtitle hidden-panel">
 
-    <h6 class="text-light mouse-pointer go-to-first"><i class="material-icons navbar-toggler-icon">&#xE5C4;</i></h6>
+        <h6 class="text-light mouse-pointer go-to-first"><i class="material-icons navbar-toggler-icon">&#xE5C4;</i></h6>
 
-    <h1 class="large text-white">Enter your Phone Number</h1>
-    <p class="h5 text-dark">We'll send you a verification text message. <br><br> SMS standard rates apply.</p>
-    <form id="phoneNumberAuth">
-        <input style="visibility: hidden;" class="toggle">
-        <div class="row">
-            <label for="staticNumber" class="col-1 col-form-label large">+1</label>
-            <div class="col-9">
-                <input type="number" class="form-control-lg large weektitle" id="staticNumber" placeholder="8131231234">
+        <h1 class="large text-white">Enter your Phone Number</h1>
+        <p class="h5 text-dark">We'll send you a verification text message. <br><br> SMS standard rates apply.</p>
+        <form id="phoneNumberAuth">
+            <input style="visibility: hidden;" class="toggle">
+            <div class="row">
+                <label for="staticNumber" class="col-1 col-form-label large">+1</label>
+                <div class="col-9">
+                    <input type="number" class="form-control-lg large weektitle" id="staticNumber" placeholder="8131231234">
+                </div>
             </div>
-        </div>
-        <button type="submit" class="float-right btn btn-lg btn-secondary hovering-shadow-small" onclick="signUpPhoneNumber();" id="submitPhoneNumber">Submit Number</button>
-    </form>
+            <button type="submit" class="float-right btn btn-lg btn-secondary hovering-shadow-small" onclick="signUpPhoneNumber();" id="submitPhoneNumber">Submit Number</button>
+        </form>
 
 
     </div>
@@ -75,7 +76,7 @@
             <input style="visibility: hidden;" class="toggle">
             <div class="row">
                 <div class="col">
-                    <input type="number" class="form-control-lg large weektitle" id="staticVerfCode" placeholder="042321">
+                    <input type="number" class="form-control-lg large weektitle" id="staticVerfCode" placeholder="123456">
                 </div>
             </div>
             <button type="submit" class="float-right btn btn-lg btn-secondary hovering-shadow-small" onclick="submitVerfCode();">Enter</button>
@@ -85,20 +86,32 @@
     </div>
 
     <div class="panel" id="mainPanel">
-        <h1 class="display-3 text-white">Sign-up</h1>
-        <p class="h5 text-dark margin-bottom-20">Authorize yourself through one the following services.</p>
+        <div class="row">
+            <div class="col-12">
+                <h1 class="display-3 margin-top-none text-white float-right">Sign-up</h1>
+            </div>
+            <div class="col-12">
+                <p class="h5 text-dark margin-bottom-20 float-right">Authorize yourself through one the following services.</p>
+            </div>
+            <div class="col">
+                <div class="d-block d-md-none">
+                    <button type="button" class="btn padding-top-bottom btn-danger btn-lg btn-block hovering-shadow-small" onclick="signUpGoogle()">Sign up with Google</button>
+                    <button type="button" class="btn padding-top-bottom btn-info btn-lg btn-block hovering-shadow-small" onclick="signUpFacebook()">Sign up with Facebook</button>
+                    <button type="button" class="margin-bottom-20  padding-top-bottom btn btn-light btn-lg btn-block hovering-shadow-small" onclick="goToPhoneNumber()">Sign up with Phone Number</button>
+                </div>
+            </div>
+            <div class="d-none d-md-block d-lg-block d-xl-block col">
+                <div class=" w-100 float-right">
+                    <button type="button" class="btn padding-top-bottom btn-danger btn-lg btn-block hovering-shadow-small" onclick="signUpGoogle()">Sign up with Google</button><br>
+                    <button type="button" class="btn padding-top-bottom btn-info btn-lg btn-block hovering-shadow-small" onclick="signUpFacebook()">Sign up with Facebook</button><br>
+                    <button type="button" class="margin-bottom-20  padding-top-bottom btn btn-light btn-block btn-lg hovering-shadow-small" onclick="goToPhoneNumber()">Sign up with Phone Number</button><br>
+                </div>
+            </div>
+        </div>
 
-        <div class="d-block d-md-none">
-            <button type="button" class="btn padding-top-bottom btn-danger btn-lg btn-block hovering-shadow-small" onclick="signUpGoogle()">Sign up with Google</button>
-            <button type="button" class="btn padding-top-bottom btn-info btn-lg btn-block hovering-shadow-small" onclick="signUpFacebook()">Sign up with Facebook</button>
-            <button type="button" class="margin-bottom-20  padding-top-bottom btn btn-light btn-lg btn-block hovering-shadow-small" onclick="goToPhoneNumber()">Sign up with Phone Number</button>
-        </div>
-        <div class="d-none d-md-block d-lg-block d-xl-block w-50">
-            <button type="button" class="btn padding-top-bottom btn-danger btn-lg btn-block hovering-shadow-small" onclick="signUpGoogle()">Sign up with Google</button><br>
-            <button type="button" class="btn padding-top-bottom btn-info btn-lg btn-block hovering-shadow-small" onclick="signUpFacebook()">Sign up with Facebook</button><br>
-            <button type="button" class="margin-bottom-20  padding-top-bottom btn btn-light btn-block btn-lg hovering-shadow-small" onclick="goToPhoneNumber()">Sign up with Phone Number</button><br>
-        </div>
-        <div class="padding-bottom-60"></div>
+
+
+        <div class="padding-bottom-30"></div>
         <div class="float-right">
             <p class="text-dark">or you can input your information manually</p>
             <button type="submit" class="float-right btn btn-lg btn-outline-secondary" onclick="manualEnterInfo();">Manually Enter Information</button>
@@ -133,7 +146,7 @@
 
         <h1 class="large text-white">Enter a password</h1>
         <p class="h5 text-dark">You will use this to login in the future.</p>
-        <p class="h5 text-danger font-weight-bold" id="password-error"></p>
+        <p class="h5 text-danger" id="password-error"></p>
         <form id="passwordForm">
             <input style="visibility: hidden;" class="toggle"><br>
             <input class="form-control-lg large weektitle" type="password" id="passwordInput" placeholder="password"><br><br>
@@ -145,11 +158,11 @@
 
     <div class="panel whole-page subtitle hidden-panel">
 
-        <h6 class="text-light mouse-pointer panel-back-button"><i class="material-icons navbar-toggler-icon">&#xE5C4;</i></h6>
+        <!--<h6 class="text-light mouse-pointer panel-back-button"><i class="material-icons navbar-toggler-icon">&#xE5C4;</i></h6>-->
 
         <h1 class="large text-white">Enter a display name</h1>
         <p class="h5 text-light">This is public and will be shown with your submitted content.</p>
-        <p class="h5 text-danger font-weight-bold" id="username-error"></p>
+        <p class="h5 text-danger" id="username-error"></p>
         <form id="usernameForm">
             <input style="visibility: hidden;" class="toggle"><br>
             <input class="form-control-lg padding-bottom-30 large weektitle" type="text" id="username" placeholder="bobnotes12">
@@ -169,7 +182,7 @@
             <input type="submit" style="visibility: hidden;" >
         </form>
         <h1 class="large text-white">Turn on location services to find Universities</h1>
-        <p class="h5 text-danger font-weight-bold" id="location-error"></p>
+        <p class="h5 text-danger" id="location-error"></p>
         <p class="h5 text-dark">Celebre needs your location initially in order to match you only with universities that are near you. This is to prevent others from joining universities they are not enrolled in.</p>
 
         <button type="button" class=" float-right btn btn-lg btn-secondary hovering-shadow-small" onclick="requestLocation()">Okay</button>
@@ -177,24 +190,26 @@
 
     </div>
 
+
     <div class="panel whole-page subtitle hidden-panel">
 
         <h1 class="large text-white">Select a University</h1>
         <form id="selectSchool">
             <input style="visibility: hidden;" class="toggle">
-            <select class="form-control form-control-lg">
+            <select class="form-control form-control-lg" id="universitySelector">
                 <option value="usf_1">University of South Florida</option>
             </select>
             <input type="submit" style="visibility: hidden;" >
         </form>
 
-        <button type="button" class=" float-right btn btn-lg btn-secondary hovering-shadow-small margin-bottom-20" onclick="requestLocation()">Continue</button><br><br>
+        <button type="button" class=" float-right btn btn-lg btn-secondary hovering-shadow-small margin-bottom-20" onclick="enterUniversity()">Continue</button><br><br>
 
         <p class="h5 text-dark padding-top-bottom">Cant find your university? You may not be close enough to the university or we may not yet support your university<br>
             We only support a small list of schools currently, and are working to expand as fast as possible.</p>
 
 
     </div>
+
 
 
 
