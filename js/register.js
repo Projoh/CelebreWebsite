@@ -265,7 +265,7 @@ function submitVerfCode() {
         markFormAsCompletedAndSubmit($('#phoneNumberAuth2'))
     }).catch(function (error) {
         var staticNum = $('#staticNumber');
-        showSnackBar("Verifcation Code was incorrect, please try again.");
+        // showSnackBar("Verifcation Code was incorrect, please try again.");
         staticNum.html("");
     });
 }

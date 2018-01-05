@@ -72,7 +72,7 @@
     <div class="panel whole-page subtitle hidden-panel" id="courseDaysMeetPanel">
         <h6 class="text-light mouse-pointer panel-back-button"><i class="material-icons navbar-toggler-icon">&#xE5C4;</i></h6>
         <h1 class="large text-white">Enter Course Title</h1>
-        <p class="h5 text-light">Ex. Physics One</p>
+        <p class="h5 text-light">Ex. Physics I</p>
         <p class="h5 text-danger" id="courseTitleError"></p>
         <form id="courseTitleForm" class="">
             <input style="visibility: hidden;" class="toggle">
@@ -127,6 +127,21 @@
             <input type="submit" style="visibility: hidden;" >
         </form>
         <button type="button" class="mouse-pointer float-right btn btn-lg btn-outline-success margin-right-32" onclick="submitNewCourse()">Enter Course</button>
+    </div>
+
+    <div class="panel whole-page subtitle hidden-panel" id="courseNotificationPanel">
+        <form id="locationServices">
+            <input style="visibility: hidden;" class="toggle">
+            <input type="submit" style="visibility: hidden;" >
+        </form>
+        <h1 class="large text-white">Do you want to received alerts for upcoming Homework and Exams?</h1>
+        <p class="h5 text-danger" id="notificationsError"></p>
+        <p class="h5 text-dark">Celebre can send you notifications before assignments and exams are due in order to remind you to submit them.<br>
+        We will not send you irrelevant notifications or advertisement.</p><br>
+        <button type="button" class=" float-right btn btn-lg btn-secondary hovering-shadow-small " onclick="allowNotifications()">Okay</button>
+        <button type="button" class=" float-right btn btn-lg btn-outline-secondary hovering-shadow-small margin-right-32" onclick="redirectToFirstPanel()">No Thanks</button>
+
+
     </div>
 
 

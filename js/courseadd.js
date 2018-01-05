@@ -1,7 +1,7 @@
 function initializeAuthStateListener() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            //
+            checkFirstCourse();
         } else {
             // No user is signed in.
            document.location = "login.html";
@@ -21,13 +21,21 @@ var courseTitles = [];
 var reported_courseTitles = [];
 var schoolID=null;
 var decisionMade = false;
+var firstCourseJoined = false;
+
 
 
 $( document ).ready(function() {
     intializePanelPageMover();
     initializeAuthStateListener();
 });
-
+function checkFirstCourse() {
+    var user = firebase.auth().currentUser;
+    fetchData('users/'+user.uid+'/courses_enrolled', null, noPreviousCoursesExist);
+    function noPreviousCoursesExist() {
+        firstCourseJoined = true;
+    }
+}
 
 // NETWORK STUFF
 function updateTimeStamp(location, functionAfter) {
@@ -63,7 +71,9 @@ function fetchData(location,functionSuccess, functionFail) {
     reference.once('value').then(function(snapshot) {
         var value = snapshot.val();
         if(value) {
-            functionSuccess(value);
+            if(functionSuccess){
+                functionSuccess(value);
+            }
         } else {
             functionFail();
         }
@@ -92,7 +102,46 @@ function encodeText(text) {
 function decodeText(text) {
     return decodeURIComponent(text.replace('%2E', '.'));
 }
+function requestNotificationPermissions(afterFunction) {
+    const messaging = firebase.messaging();
+    messaging.requestPermission()
+        .then(function() {
+            console.log('Notification permission granted.');
+            // TODO(developer): Retrieve an Instance ID token for use with FCM.
+            retrieveMessagingToken();
+        })
+        .catch(function(err) {
+            showSnackBar('Unable to get permission to notify. ' + err.message);
+            afterFunction();
+        });
 
+    function retrieveMessagingToken() {
+        messaging.getToken()
+            .then(function(currentToken) {
+                if (currentToken) {
+                    sendTokenToServer(currentToken, afterFunction);
+                } else {
+                    // Show permission request.
+                    console.log('No Instance ID token available. Request permission to generate one.');
+                    // Show permission UI.
+                    // updateUIForPushPermissionRequired();
+                    // setTokenSentToServer(false);
+                }
+            })
+            .catch(function(err) {
+                console.log('An error occurred while retrieving token. ', err);
+                // showToken('Error retrieving Instance ID token. ', err);
+                // setTokenSentToServer(false);
+            });
+    }
+}
+function allowNotifications() {
+    requestNotificationPermissions(redirectToFirstPanel);
+}
+function sendTokenToServer(currentToken, afterFunction) {
+    var user = firebase.auth().currentUser;
+    inputKeyValue('user_tokens/'+user.uid, currentToken ,afterFunction);
+}
 
 
 
@@ -130,9 +179,9 @@ function intializePanelPageMover() {
         event.preventDefault();
         var thisForm = $(this);
 
-        // if(!formIsValid(thisForm)){
-        //     return;
-        // }
+        if(!formIsValid(thisForm)){
+            return;
+        }
 
         var thisPanel = thisForm.parent('.panel');
         var nextPanel = thisPanel.first().next('.panel');
@@ -179,7 +228,10 @@ function moveToNextPanel(panel1, panel2) {
         panel2.find('form').first().submit();
     }
 }
-
+function resetForm(form) {
+    var toggle = form[0][0];
+    toggle.value = 0;
+}
 function moveToNextPanelWithoutSubmit(panel1, panel2) {
     fadeOutToLeft(panel1, SPEED_FAST, enterNextPanel);
 
@@ -269,9 +321,9 @@ function addCourse(CRN) {
     }
 
     function courseDoesNotExist() {
-        var addCourseElement = $('#addCourse');
-        markFormAsCompletedAndSubmit(addCourseElement);
-
+        var addCourseElement = $('#addCoursePanel');
+        var courseDaysElement = $('#courseDaysMeetPanel');
+        moveToNextPanelWithoutSubmit(addCourseElement,courseDaysElement);
     }
 
 
@@ -310,6 +362,8 @@ function addCourse(CRN) {
         // If there is no not reported title, then add the first of the reported
         // and ask if that title is correct
 
+
+
         if(ratioOfReports >= 10) {
             popupAskingIfTitleIsCorrect();
         } else {
@@ -332,10 +386,15 @@ function addCourse(CRN) {
 
                 function clearCRNUI() {
                     var crnElement = $('#courseIDElement');
+                    var crnForm = $('#addCourse');
+                    resetForm(crnForm);
                     crnElement.val("");
                     showSnackBar("You've signed up to the course " +  firstTitle.content +
                         '(' + CRN + ')');
-                    attemptToAskQuestion();
+                    if(firstCourseJoined) {
+                        var currentPanel = $('#addCoursePanel');
+                        moveToNotificationPanel(currentPanel);
+                    }
                 }
         }
 
@@ -349,6 +408,8 @@ function addCourse(CRN) {
         function setCourseTitle() {
             inputKeyValue('/courses/'+schoolID + '/'+ encodeText(CRN)+'/title', courseTitles[0].content);
         }
+
+
     }
 
 
@@ -368,7 +429,10 @@ function addCourse(CRN) {
     }
 
 }
-
+function moveToNotificationPanel(currentPanel) {
+    var notificationPanel = $('#courseNotificationPanel');
+    moveToNextPanel(currentPanel, notificationPanel);
+}
 
 
 // Manual Course title because course does not exist
@@ -376,8 +440,8 @@ function submitManualCourseTitle() {
     var titleElement = $('#courseTitle');
     var titleText = titleElement.val();
     var addCourseElement = $('#courseTitleForm');
-    if(titleText.length < 1 || titleText.length > 20) {
-        showErrorMessage($('#courseTitleError'), "Title cannot be less than one character or longer than twenty.");
+    if(titleText.length < 1 || titleText.length > 40) {
+        showErrorMessage($('#courseTitleError'), "Title cannot be less than one character or longer than fourty.");
     } else {
         markFormAsCompletedAndSubmit(addCourseElement);
     }
@@ -421,15 +485,31 @@ function submitNewCourse() {
             });
         });
 
-        function updateUI() {
+        function resetAllForms() {
             var courseDayElementForm = $('#courseDaysForm');
+            var coursetitle = $('#courseTitleForm');
+            var addCourseForm = $('#addCourse');
             courseDayElementForm[0].reset();
-            titleElement.val("");
-            crnElement.val("");
+            coursetitle[0].reset();
+            addCourseForm[0].reset();
+        }
+
+        function updateUI() {
+            resetAllForms();
+
             showSnackBar("You've signed up to the course " +  titleText +
                 '(' + CRN + ')');
-            redirectToFirstPanel();
-            userConfirmedItem();
+            userConfirmedItem(showNotificationsPanelOrRedirectToFirst);
+
+            function showNotificationsPanelOrRedirectToFirst() {
+                if(firstCourseJoined) {
+                    var notificationPanel = $('#courseNotificationPanel');
+                    moveToNextPanel($('#courseDaysPanel'), notificationPanel);
+                } else {
+                    redirectToFirstPanel();
+                }
+            }
+
         }
     }
 
@@ -446,11 +526,12 @@ function submitNewCourse() {
         return dayOne.toUpperCase() + '_' + dayTwo.toUpperCase();
     }
 
-    function redirectToFirstPanel() {
-        var firstPanel = $('#addCoursePanel');
-        var currentPanel = $('#courseDaysPanel');
-        moveToNextPanel(currentPanel, firstPanel);
-    }
+
+}
+function redirectToFirstPanel() {
+    var firstPanel = $('#addCoursePanel');
+    var currentPanel = $('#courseDaysPanel');
+    moveToNextPanel(currentPanel, firstPanel);
 }
 
 
