@@ -134,6 +134,7 @@ function changePage(newLocation) {
     }
 
 
+    // When I wrote this I was an edgy idiot.
     function showNextPage() {
         newLocation = newLocation.split('#');
         if(newLocation[1] == "mochila" || newLocation[1] == "addcourse") {

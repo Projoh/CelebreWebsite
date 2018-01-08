@@ -6402,6 +6402,9 @@ body {
 .small {
   font-size: 12px !important; }
 
+.xsmall {
+  font-size: 9px !important; }
+
 .material-icons {
   -khtml-user-select: none;
   -o-user-select: none;
@@ -6499,7 +6502,8 @@ input.weektitle {
   padding-bottom: 4px; }
 
 .document {
-  min-height: 65vh; }
+  opacity: 0;
+  min-height: 67vh; }
 
 .paper {
   font-family: 'Roboto', sans-serif;
@@ -6524,5 +6528,21 @@ input.weektitle {
 
 .margin-right-5 {
   margin-right: 4px; }
+
+.margin-bottom-0 {
+  margin-bottom: 0px !important; }
+
+.opacity-none {
+  opacity: 0; }
+
+.initial-fade-in {
+  padding-left: 45px;
+  opacity: 0; }
+
+textarea.enter-notes::-webkit-input-placeholder {
+  color: #fff; }
+
+nav#active {
+  opacity: 0; }
 
 /*# sourceMappingURL=moebootstrap.css.map */
