@@ -18,6 +18,7 @@ const ONE_HOUR =  3600; // IN SECONDS
 var database = firebase.database();
 var schoolID, crn, weekNumber, dayNumber;
 var allNotes = [];
+var allDecisions = [];
 var pagesCounter = 2;
 
 
@@ -44,18 +45,12 @@ function intializeRatingListeners() {
                 var row = parent.parent().parent();
                 var state = parent.attr('data-value'); // SELECTED OR NOT-SELECTED
                 var objectType = row.attr('data-type');
-                var objectID = row.attr('data-id');
+                var objectID = row.attr('id');
 
-                if(state !== 'selected') {
-                    markObjectAsConfirmed(objectType, objectID, updateUIForConfimration);
-                } else {
-                    undoDeleteFunction(objectType, objectID, anonFun);
-                    function anonFun() {
-                        resetCheckButtons(parent, checkYes);
-                        function checkYes() {
-                            markObjectAsConfirmed(objectType, objectID, updateUIForConfimration);
-                        }
-                    }
+                resetCheckButtons(parent, nextFunction);
+                function nextFunction () {
+                    rateItem(objectType, objectID, true);
+                    updateUIForConfimration();
                 }
                 function updateUIForConfimration() {
                     item.removeClass('text-light');
@@ -73,20 +68,27 @@ function intializeRatingListeners() {
                 var row = parent.parent().parent();
                 var state = parent.attr('data-value'); // SELECTED OR NOT-SELECTED
                 var objectType = row.attr('data-type');
-                var objectID = row.attr('data-id');
+                var objectID = row.attr('id');
 
-                if(state !== 'selected') {
-                    markObjectAsDelete(objectType, objectID, updateUIForConfimration);
-                } else {
-                    undoConfirmFunction(objectType, objectID, anonFun);
-                    function anonFun() {
-                        resetCheckButtons(parent, checkDelete);
-                        function checkDelete() {
-                            markObjectAsDelete(objectType, objectID, updateUIForConfimration);
-                        }
-                    }
+
+
+                resetCheckButtons(parent, nextFunction);
+                function nextFunction () {
+                    rateItem(objectType, objectID, false);
+                    updateUIForDelete();
                 }
-                function updateUIForConfimration() {
+                // if(state !== 'selected') {
+                //     markObjectAsDelete(objectType, objectID, updateUIForConfimration);
+                // } else {
+                //     undoConfirmFunction(objectType, objectID, anonFun);
+                //     function anonFun() {
+                //         resetCheckButtons(parent, checkDelete);
+                //         function checkDelete() {
+                //             markObjectAsDelete(objectType, objectID, updateUIForDelete);
+                //         }
+                //     }
+                // }
+                function updateUIForDelete() {
                     item.removeClass('text-light');
                     item.removeClass('text-warning');
                     item.addClass('text-danger');
@@ -126,54 +128,6 @@ function intializeRatingListeners() {
                 item.removeClass('text-warning');
             }
         });
-    }
-
-
-    function markObjectAsDelete(objectType, objectID, functionAfter) {
-        if(objectType == 'note') {
-            var noteLocation = 'notes/'+schoolID+'/'+crn+'/'+weekNumber+'/'+
-                dayNumber+'/'+objectID +'/reports';
-            incrementDatabaseValue(noteLocation, 1, functionAfter);
-        } else
-        if(objectType == 'assignment') {
-            var assignmentLocation = 'assignments/'+schoolID+'/'+crn+'/'+objectID +'/reports';
-            incrementDatabaseValue(assignmentLocation, 1, functionAfter);
-        }
-        // TODO: MAKE USER NOT SEE THIS OBJECT AGAIN
-    }
-    function markObjectAsConfirmed(objectType, objectID, functionAfter) {
-        if(objectType == 'note') {
-            var noteLocation = 'notes/'+schoolID+'/'+crn+'/'+weekNumber+'/'+
-                dayNumber+'/'+objectID +'/confirmations';
-            incrementDatabaseValue(noteLocation, 1, functionAfter);
-        } else
-        if(objectType == 'assignment') {
-            var assignmentLocation = 'assignments/'+schoolID+'/'+crn+'/'+objectID +'/confirmations';
-            incrementDatabaseValue(assignmentLocation, 1, functionAfter);
-        }
-    }
-
-    function undoDeleteFunction(objectType, objectID, functionAfter) {
-        if(objectType == 'note') {
-            var noteLocation = 'notes/'+schoolID+'/'+crn+'/'+weekNumber+'/'+
-                dayNumber+'/'+objectID +'/reports';
-            incrementDatabaseValue(noteLocation, -1, functionAfter);
-        } else
-        if(objectType == 'assignment') {
-            var assignmentLocation = 'assignments/'+schoolID+'/'+crn+'/'+objectID +'/reports';
-            incrementDatabaseValue(assignmentLocation, -1, functionAfter);
-        }
-    }
-    function undoConfirmFunction(objectType, objectID, functionAfter) {
-        if(objectType == 'note') {
-            var noteLocation = 'notes/'+schoolID+'/'+crn+'/'+weekNumber+'/'+
-                dayNumber+'/'+objectID +'/confirmations';
-            incrementDatabaseValue(noteLocation, -1, functionAfter);
-        } else
-        if(objectType == 'assignment') {
-            var assignmentLocation = 'assignments/'+schoolID+'/'+crn+'/'+objectID +'/confirmations';
-            incrementDatabaseValue(assignmentLocation, -1, functionAfter);
-        }
     }
 
 
@@ -273,7 +227,6 @@ function intializePanelPageMover() {
             var prevPanel = currentPanel.prev();
             var prevForm = prevPanel.find('form');
 
-            resetForm(prevForm);
             moveToNextPanel(currentPanel, prevPanel);
         });
     });
@@ -346,9 +299,10 @@ function initializeNotes() {
 
 
 
-    function attemptToAddNoteItem(data) {
-        var reports = data.val().reports;
-        var confirmations = data.val().confirmations;
+    function attemptToAddNoteItem(res) {
+        var data = res.val();
+        var reports = data.reports;
+        var confirmations = data.confirmations;
         var percentReported = reports/confirmations * 100;
         if(percentReported > 20) {
             return;
@@ -361,8 +315,9 @@ function initializeNotes() {
         if(currentPage.height() > (1.5*window.height)) {
             createNewPage();
         }
-        allNotes[data.key] = data.val();
-        appendNote(data.key, allNotes[data.key]);
+        data.key = res.key;
+        allNotes[res.key] = data;
+        appendNote(allNotes[data.key]);
     }
 
     function createNewPage() {
@@ -370,7 +325,8 @@ function initializeNotes() {
         var currentPage = $('.current-page');
 
         var newPageHTML="";
-        newPageHTML += "<div class=\"card paper document hovering-shadow-small margin-bottom-20 current-page\">";
+        newPageHTML += "<div class=\"card paper document hovering-shadow-small margin-bottom-20 current-page\" ";
+        newPageHTML += "style=\"opacity: 1;padding-top: 8px;\">";
         newPageHTML += "                    <div class=\"card-body\">";
         newPageHTML += "                        <h6 class=\"card-subtitle mb-2 text-muted initial-fade-in\">Page ";
         newPageHTML += pagesCounter;
@@ -387,12 +343,14 @@ function initializeNotes() {
         pagesCounter++;
     }
 
-    function appendNote(key, note) {
+
+
+    function appendNote(note) {
         var currentNoteSection = $('.current-page .all-notes');
-        var time =  moment().millisecond(note.timestamp);
+        var time =  moment(note.timestamp);
         var newNoteHTML="";
-        newNoteHTML += "                            <div class=\"single-note\" data-type=\"note\" data-id=\"";
-        newNoteHTML += key;
+        newNoteHTML += "                            <div class=\"single-note\" data-type=\"notes\" id=\"";
+        newNoteHTML += note.key;
         newNoteHTML += "\">";
         newNoteHTML += "                                <div class=\"row\">";
         newNoteHTML += "                                    <div class=\"col-1 text-light show-on-hover opacity-none rating-buttons\" data-value=\"not-selected\">";
@@ -413,12 +371,57 @@ function initializeNotes() {
         newNoteHTML += "                                        <p class=\"xsmall margin-bottom-0 text-primary\">";
         newNoteHTML += note.username;
         newNoteHTML += " <custom class=\"text-muted\">";
-        newNoteHTML += time.hour + ":" + time.minute();
+        newNoteHTML += time.format("hh:mm A");
         newNoteHTML += "<\/custom><\/p>";
         newNoteHTML += "                                    <\/div>";
         newNoteHTML += "                                <\/div>";
         newNoteHTML += "                            <\/div>";
         currentNoteSection.append(newNoteHTML);
+        loadPastDecision(note);
+    }
+
+    function showConfirmationForID(objectID) {
+        var element = $('#'+objectID);
+        var checkMark = element.find('.check-mark');
+        var row = element.find('.row');
+
+
+        checkMark.removeClass('text-light');
+        checkMark.removeClass('text-secondary');
+        checkMark.addClass('text-primary');
+        row.attr('data-value', 'selected');
+    }
+
+
+    function showReportForID(objectID) {
+        var element = $('#'+objectID);
+        var deleteMark = element.find('.delete-mark');
+        var row = element.find('.row');
+
+        deleteMark.removeClass('text-light');
+        deleteMark.removeClass('text-warning');
+        deleteMark.addClass('text-danger');
+        row.attr('data-value', 'selected');
+    }
+
+    function loadPastDecision(note) {
+        var user = firebase.auth().currentUser;
+        var pastDecisionLocation = 'decisions/'+schoolID+'/'+crn+'/'+user.uid+'/notes/'+note.key;
+
+        fetchData(pastDecisionLocation, showPastDecision);
+
+        function showPastDecision(result) {
+            var newDecision = new Object();
+            newDecision.id = note.key;
+            newDecision.type = note;
+            newDecision.value = result;
+            allDecisions[newDecision.id] = newDecision;
+            if(result) { // was a Confirmaton
+                showConfirmationForID(note.key);
+            } else { // was a report
+                showReportForID(note.key);
+            }
+        }
     }
 }
 
@@ -455,12 +458,14 @@ function fetchData(location,functionSuccess, functionFail) {
 
     reference.once('value').then(function(snapshot) {
         var value = snapshot.val();
-        if(value) {
+        if(value !== null && typeof value !== 'undefined') {
             if(functionSuccess){
                 functionSuccess(value);
             }
         } else {
-            functionFail();
+            if(functionFail) {
+                functionFail();
+            }
         }
     });
 }
@@ -471,14 +476,28 @@ function userConfirmedItem(functionAfter) {
         updateTimeStamp('users/'+user.uid+'/last_confirmation', functionAfter);
     }
 }
+function undoUserConfirmedItem(functionAfter) {
+    var user = firebase.auth().currentUser;
+    incrementDatabaseValue('users/'+user.uid+'/confirmations', -1, updatetime);
+    function updatetime() {
+        updateTimeStamp('users/'+user.uid+'/last_confirmation', functionAfter);
+    }
+}
 function reportByUID(reportedUID) {
     incrementDatabaseValue('reports/'+schoolID+'/'+reportedUID, 1, userReportedItem);
 }
-function userReportedItem() {
+function userReportedItem(afterFunction) {
     var user = firebase.auth().currentUser;
     incrementDatabaseValue('users/'+user.uid+'/reports_given', 1, updatetime);
     function updatetime() {
-        updateTimeStamp('users/'+user.uid+'/last_confirmation');
+        updateTimeStamp('users/'+user.uid+'/last_confirmation', afterFunction);
+    }
+}
+function undoUserReportedItem(functionAfter) {
+    var user = firebase.auth().currentUser;
+    incrementDatabaseValue('users/'+user.uid+'/reports_given', -1, updatetime);
+    function updatetime() {
+        updateTimeStamp('users/'+user.uid+'/last_confirmation', functionAfter);
     }
 }
 function encodeText(text) {
@@ -532,6 +551,61 @@ function encodeText(text) {
 }
 function decodeText(text) {
     return decodeURIComponent(text.replace('%2E', '.'));
+}
+function rateItem(type,id, confirmOrDeny) {
+    var user = firebase.auth().currentUser;
+    var location = type+'/' + schoolID + '/'+crn + '/' + weekNumber + '/' + dayNumber + '/' + id;
+    var oppLocation = location;
+    var decLocation = 'decisions/'+schoolID +'/' + crn + '/' + user.uid + '/' + type + '/' + id;
+    if(confirmOrDeny) {
+        location += '/' + 'confirmations';
+        oppLocation += '/' + 'reports';
+    } else {
+        location += '/' + 'reports';
+        oppLocation += '/' + 'confirmations';
+    }
+
+
+    checkIfDecisionExists();
+
+
+    function checkIfDecisionExists() {
+
+        fetchData(decLocation, decisionExisted, performJudgment);
+
+        function decisionExisted(response) {
+            revertDecision(response, performJudgment);
+        }
+    }
+
+
+    function revertDecision(value, functionAfter) {
+
+        incrementDatabaseValue(oppLocation, -1, anonFunction());
+        function anonFunction() {
+            if(value) { // Was confirmation
+                undoUserConfirmedItem(functionAfter);
+            } else { // Was a report
+                undoUserReportedItem(functionAfter);
+            }
+        }
+    }
+
+    function performJudgment() {
+        incrementDatabaseValue(location, 1, afterFunction);
+
+        function afterFunction () {
+            if(confirmOrDeny) {
+                userConfirmedItem(addDecision)
+            } else {
+                userReportedItem(addDecision)
+            }
+        }
+    }
+
+    function addDecision() {
+        inputKeyValue(decLocation, confirmOrDeny);
+    }
 }
 
 // Animation stuff
