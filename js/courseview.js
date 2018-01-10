@@ -41,8 +41,8 @@ function intializeRatingListeners() {
         containers.on('click', '.row .rating-buttons .check-mark', function() {
             var item = $(this);
             if(!item.hasClass('text-primary')) {
-                var parent = item.parent().parent();
-                var row = parent.parent().parent();
+                var parent = item.closest('.row');
+                var row = parent.closest('.single-item');
                 var state = parent.attr('data-value'); // SELECTED OR NOT-SELECTED
                 var objectType = row.attr('data-type');
                 var objectID = row.attr('id');
@@ -77,17 +77,9 @@ function intializeRatingListeners() {
                     rateItem(objectType, objectID, false);
                     updateUIForDelete();
                 }
-                // if(state !== 'selected') {
-                //     markObjectAsDelete(objectType, objectID, updateUIForConfimration);
-                // } else {
-                //     undoConfirmFunction(objectType, objectID, anonFun);
-                //     function anonFun() {
-                //         resetCheckButtons(parent, checkDelete);
-                //         function checkDelete() {
-                //             markObjectAsDelete(objectType, objectID, updateUIForDelete);
-                //         }
-                //     }
-                // }
+
+
+
                 function updateUIForDelete() {
                     item.removeClass('text-light');
                     item.removeClass('text-warning');
@@ -253,12 +245,12 @@ function intializePanelPageMover() {
 function intializeSingleNoteHover() {
     var notesContainer = $('.container');
 
-    notesContainer.on('mouseenter', '.single-note', function () {
+    notesContainer.on('mouseenter', '.single-item', function () {
         var itemToShow =$(this).find('.show-on-hover');
         fadeIn(itemToShow, SPEED_FAST);
     });
 
-    notesContainer.on('mouseleave', '.single-note', function () {
+    notesContainer.on('mouseleave', '.single-item', function () {
         var itemToShow = $(this).find('.show-on-hover');
         fadeOut(itemToShow, SPEED_MEDIUM);
     });
@@ -290,7 +282,7 @@ function intializeNavBarShower() {
 }
 function initializeNotes() {
     var window = $(window);
-    var notesRef = database.ref('/notes/'+schoolID+'/'+crn+'/'+weekNumber+'/'+dayNumber+'/');
+    var notesRef = database.ref('/notes/'+schoolID+'/'+crn+'/'+weekNumber+'/'+dayNumber+'/').orderByChild('timestamp');
 
     notesRef.on('child_added', function(data) {
         attemptToAddNoteItem(data);
@@ -349,7 +341,7 @@ function initializeNotes() {
         var currentNoteSection = $('.current-page .all-notes');
         var time =  moment(note.timestamp);
         var newNoteHTML="";
-        newNoteHTML += "                            <div class=\"single-note\" data-type=\"notes\" id=\"";
+        newNoteHTML += "                            <div class=\"single-item\" data-type=\"notes\" id=\"";
         newNoteHTML += note.key;
         newNoteHTML += "\">";
         newNoteHTML += "                                <div class=\"row\">";
@@ -425,9 +417,56 @@ function initializeNotes() {
     }
 }
 
+
+
+function submitNote() {
+    var contentElement = $('#note_content');
+    var noteContent = contentElement.val();
+    noteContent = encodeText(noteContent);
+
+    if(noteContent.length < 1) {
+        alert("Note submission is too short.");
+        return;
+    }
+
+    retreiveUsername(postNewNote);
+
+
+    function postNewNote(username) {
+        var user = firebase.auth().currentUser;
+        var currentTime = new Date().getTime();
+        var location = 'notes/' + schoolID + '/' + crn + '/' + weekNumber + '/' + dayNumber + '/';
+        var notesRef = database.ref(location).push();
+
+
+
+
+        notesRef.set({
+            confirmations: 0,
+            content: noteContent,
+            reports: 0,
+            type: 'text',
+            timestamp: currentTime,
+            uid: user.uid,
+            username: username
+        }).then(function () {
+            updateUIAfterNoteSubmission();
+        });
+
+        function updateUIAfterNoteSubmission() {
+            contentElement.val("");
+        }
+    }
+
+
+
+
+}
+
+
 // NETWORK STUFF
 function updateTimeStamp(location, functionAfter) {
-    var currentTime = Math.round(new Date().getTime() / 1000);
+    var currentTime = new Date().getTime();
     inputKeyValue(location, currentTime, functionAfter);
 }
 function incrementDatabaseValue(location, amount, functionAfter) {
@@ -607,6 +646,12 @@ function rateItem(type,id, confirmOrDeny) {
         inputKeyValue(decLocation, confirmOrDeny);
     }
 }
+function retreiveUsername(afterFunction) {
+    var user = firebase.auth().currentUser;
+    var location = 'users/'+ user.uid + '/username';
+
+    fetchData(location, afterFunction);
+}
 
 // Animation stuff
 function fadeInFromTop(object, speed) {
@@ -666,3 +711,17 @@ function hideProgressBar() {
 $(window).on('hashchange', function() {
     loadPage('' + location.hash);
 });
+
+$(document)
+    .one('focus.autoExpand', 'textarea.autoExpand', function(){
+        var savedValue = this.value;
+        this.value = '';
+        this.baseScrollHeight = this.scrollHeight;
+        this.value = savedValue;
+    })
+    .on('input.autoExpand', 'textarea.autoExpand', function(){
+        var minRows = this.getAttribute('data-min-rows')|0, rows;
+        this.rows = minRows;
+        rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 16);
+        this.rows = minRows + rows;
+    });

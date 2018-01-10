@@ -6425,6 +6425,10 @@ body {
   padding-top: 16px;
   padding-bottom: 16px; }
 
+.padding-top-bottom-60 {
+  padding-top: 64px;
+  padding-bottom: 66px; }
+
 .margin-right-32 {
   margin-right: 32px; }
 
@@ -6544,5 +6548,10 @@ textarea.enter-notes::-webkit-input-placeholder {
 
 nav#active {
   opacity: 0; }
+
+textarea {
+  display: block;
+  overflow: hidden;
+  min-height: 10vh; }
 
 /*# sourceMappingURL=moebootstrap.css.map */
