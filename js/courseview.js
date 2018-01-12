@@ -422,12 +422,14 @@ function initializeNotes() {
 function submitNote() {
     var contentElement = $('#note_content');
     var noteContent = contentElement.val();
+    noteContent = noteContent.replaceAll('\n', '<br>');
     noteContent = encodeText(noteContent);
 
     if(noteContent.length < 1) {
         alert("Note submission is too short.");
         return;
     }
+
 
     retreiveUsername(postNewNote);
 
@@ -442,7 +444,7 @@ function submitNote() {
 
 
         notesRef.set({
-            confirmations: 0,
+            confirmations: 6,
             content: noteContent,
             reports: 0,
             type: 'text',
@@ -706,7 +708,10 @@ function hideProgressBar() {
     var progress = $('#progress-loader');
     progress.addClass('hidden-panel')
 }
-
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
 
 $(window).on('hashchange', function() {
     loadPage('' + location.hash);

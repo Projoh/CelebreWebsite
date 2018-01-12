@@ -31,7 +31,7 @@
             <div class="container-fluid padding-top-bottom">
                 <div class="row">
                     <div class="col-4">
-                        <h6 class="text-light mouse-pointer"><i class="material-icons navbar-toggler-icon">&#xE5C4;</i> <custom class="text-light text-icon">Physics II</custom></h6>
+                        <h6 class="text-light mouse-pointer"><i class="material-icons navbar-toggler-icon">&#xE5C4;</i> <custom class="text-light text-icon medium">Physics II</custom></h6>
                     </div>
                     <div class="col-4 text-center padding-top-10 expand-images-button">
                         <h6 class="text-dark mouse-pointer">Images<i class="material-icons text-icon">&#xE313;</i></h6>
@@ -86,8 +86,8 @@
             <div  id="progress-loader" class="loader">Loading...</div>
 
             <div id="pages">
-                <div class="card paper document hovering-shadow-small margin-bottom-20 current-page" style="opacity: 1;padding-top: 8px;">
-                    <div class="card-body">
+                <div class="card document hovering-shadow-small margin-bottom-20 current-page" style="opacity: 1;padding-top: 8px;">
+                    <div class="card-body not-ubuntu">
                         <h5 class="card-title initial-fade-in" >Week One: Monday
                             <button type="button" class="mouse-pointer float-right btn btn-sm btn-outline-primary btn-success"  data-toggle="modal" data-target="#exampleModalLong">VIEW ASSIGNMENTS</button>
                         </h5>
@@ -105,12 +105,12 @@
 
         <div class="container">
             <div class="form-group">
-                <textarea class="form-control enter-notes bg-primary text-white medium autoExpand" id="note_content" rows="3" placeholder="Enter text notes here..."></textarea>
+                <textarea class="form-control enter-notes bg-primary text-white medium autoExpand" id="note_content" rows="3" placeholder="Type here..."></textarea>
             </div>
 
             <div class="row justify-content-between">
                 <div class="col-auto align-self-end padding-right-left-16 padding-bottom-5">
-                    <button type="button" class="mouse-pointer float-right btn btn-outline-light margin-right-5 " onclick=""><i class="material-icons text-icon">&#xE3B0;</i></button>
+                    <button type="button" class="mouse-pointer float-right btn btn-outline-light margin-right-5 "data-toggle="modal" data-target="#exampleModal" onclick=""><i class="material-icons text-icon">&#xE3B0;</i></button>
                 </div>
                 <div class="col-auto align-self-end padding-right-left-16 padding-bottom-5">
                     <button type="button" class="mouse-pointer float-right btn btn-secondary margin-none " onclick="submitNote()">Submit</button>
@@ -215,21 +215,17 @@
         </div>
     </div>
 </div>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-</button>
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <form action="/file-upload"
-                      class="dropzone text-center w-100 padding-top-bottom-60 margin-bottom-20"
-                      id="my-awesome-dropzone"></form>
+
+
+
+
                 <button type="button" class="btn btn-primary float-right">Submit</button>
-                <button type="button" class="btn btn-outline-dark float-right margin-right-5">Cancel</button>
+                <button type="button" class="btn btn-outline-dark float-right margin-right-5" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
