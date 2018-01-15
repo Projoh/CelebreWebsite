@@ -25,16 +25,16 @@
     <div class=" p-4">
         <ul class="nav justify-content-end" id="navBarList">
             <li class="nav-item" id="loginMenuItem">
-                <a class="nav-link" href="#">LOGIN</a>
+                <a class="nav-link" href="login.html">LOGIN</a>
             </li>
             <li class="nav-item" id="featuresMenuItem">
-                <a class="nav-link" href="#">FEATURES</a>
+                <a class="nav-link text-muted" href="#">FEATURES</a>
             </li>
             <li class="nav-item" id="aboutMenuItem">
-                <a class="nav-link" href="#">ABOUT</a>
+                <a class="nav-link text-muted" href="#">ABOUT</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" onclick="goToContact()">CONTACT</a>
+                <a class="nav-link text-muted" href="#">CONTACT</a>
             </li>
         </ul>
     </div>
@@ -44,10 +44,10 @@
 
 <div class="container-fluid">
     <nav class="navbar navbar-dark bg-transparent">
-        <p class="lead padding-top-10 text-secondary">Register Now</p>
+        <p class="lead padding-top-10"><a href="register.html" class="text-secondary">Register Now</a></p>
         <div class="d-none d-md-block d-lg-block d-xl-block">
 
-            <p class="lead padding-top-10 text-secondary"><custom class="margin-right-32 no-select">Features</custom><custom class="margin-right-32 no-select">About us</custom></p>
+            <p class="lead padding-top-10 text-secondary"><custom class="margin-right-32 no-select text-muted">Features</custom><custom class="margin-right-32 no-select text-muted">About us</custom></p>
 
         </div>
         <button class="navbar-toggler no-select" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
@@ -83,9 +83,9 @@
         <div class="d-none d-md-block d-lg-block d-xl-block col">
 
             <p class="align-content-center d-flex justify-content-center">
-            <div class="img mx-auto row align-items-center" style="height: 900px;width:auto;">
-                <img id="img-186960085240" class="col card-img-top mh-100 width-auto"
-                     src="img/headfacenotepaper.png" alt="Image of the specified item">
+            <div class="img mx-auto row align-content-end" style="height: 900px;width:auto;">
+                <img id="img-186960085240" class="col card-img-top mh-100 width-auto float-right img-fluid"
+                     src="img/facebookpaper.png" alt="Image of the specified item">
             </div>
             </p>
 
@@ -198,7 +198,7 @@
     </div>
     <div class="row align-items-center panel whole-page"  data-color="green">
         <div class="col padding-top-bottom"><h1 class="display-3 text-light">Celebre
-            <button class="btn btn-success my-2 my-sm-0" type="submit">Register Now</button>
+            <button class="btn btn-success my-2 my-sm-0" type="submit"><a href="register.html"> Register Now</a></button>
             <button class="btn btn-outline-success my-2 my-sm-0 move-next-button" type="submit">About us</button>
         </h1>
 

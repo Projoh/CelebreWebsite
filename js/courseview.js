@@ -139,7 +139,6 @@ function intializeRatingListeners() {
 
 $( document ).ready(function() {
     moment().format();
-    checkURLandNavigate();
     intializePanelPageMover();
     initializeAuthStateListener();
     intializeSingleNoteHover();
@@ -156,6 +155,11 @@ $( document ).ready(function() {
     }
     hideProgressBar();
 });
+
+$(window).on('load', function(){
+    checkURLandNavigate();
+});
+
 function checkURLandNavigate() {
     if (location.hash == "" || location.hash == null || location.hash == "#!") {
         location.hash = "SCHOOL#CRN#WEEKNUM#DAYNUM";
@@ -282,7 +286,7 @@ function intializeNavBarShower() {
 }
 function initializeNotes() {
     var window = $(window);
-    var notesRef = database.ref('/notes/'+schoolID+'/'+crn+'/'+weekNumber+'/'+dayNumber+'/').orderByChild('timestamp');
+    var notesRef = database.ref('/notes_by_course/'+schoolID+'/'+crn+'/'+weekNumber+'/'+dayNumber+'/').orderByChild('timestamp');
 
     notesRef.on('child_added', function(data) {
         attemptToAddNoteItem(data);
@@ -304,7 +308,9 @@ function initializeNotes() {
         }
 
         var currentPage = $('.current-page');
-        if(currentPage.height() > (1.5*window.height)) {
+        var pageHeight = currentPage.height();
+        var wHeight = $(window).height;
+        if(pageHeight > 1.5 * 1024) {
             createNewPage();
         }
         data.key = res.key;
@@ -319,7 +325,7 @@ function initializeNotes() {
         var newPageHTML="";
         newPageHTML += "<div class=\"card paper document hovering-shadow-small margin-bottom-20 current-page\" ";
         newPageHTML += "style=\"opacity: 1;padding-top: 8px;\">";
-        newPageHTML += "                    <div class=\"card-body\">";
+        newPageHTML += "                    <div class=\"card-body not-ubuntu\">";
         newPageHTML += "                        <h6 class=\"card-subtitle mb-2 text-muted initial-fade-in\">Page ";
         newPageHTML += pagesCounter;
         newPageHTML += "<\/h6><br>";
@@ -330,7 +336,7 @@ function initializeNotes() {
         newPageHTML += "                    <\/div>";
         newPageHTML += "                <\/div>";
 
-        currentPage.removeClass('.current-page');
+        currentPage.removeClass('current-page');
         pagesContainer.append(newPageHTML);
         pagesCounter++;
     }
@@ -387,13 +393,14 @@ function initializeNotes() {
 
     function showReportForID(objectID) {
         var element = $('#'+objectID);
-        var deleteMark = element.find('.delete-mark');
-        var row = element.find('.row');
-
-        deleteMark.removeClass('text-light');
-        deleteMark.removeClass('text-warning');
-        deleteMark.addClass('text-danger');
-        row.attr('data-value', 'selected');
+        // var deleteMark = element.find('.delete-mark');
+        // var row = element.find('.row');
+        //
+        // deleteMark.removeClass('text-light');
+        // deleteMark.removeClass('text-warning');
+        // deleteMark.addClass('text-danger');
+        // row.attr('data-value', 'selected');
+        element.remove();
     }
 
     function loadPastDecision(note) {
@@ -422,7 +429,9 @@ function initializeNotes() {
 function submitNote() {
     var contentElement = $('#note_content');
     var noteContent = contentElement.val();
-    noteContent = noteContent.replaceAll('\n', '<br>');
+    var html = $.parseHTML(noteContent);
+    noteContent = $(html).text();
+    noteContent = noteContent.replace('\n', '<br>');
     noteContent = encodeText(noteContent);
 
     if(noteContent.length < 1) {
@@ -437,7 +446,7 @@ function submitNote() {
     function postNewNote(username) {
         var user = firebase.auth().currentUser;
         var currentTime = new Date().getTime();
-        var location = 'notes/' + schoolID + '/' + crn + '/' + weekNumber + '/' + dayNumber + '/';
+        var location = 'notes_by_course/' + schoolID + '/' + crn + '/' + weekNumber + '/' + dayNumber + '/';
         var notesRef = database.ref(location).push();
 
 
@@ -456,7 +465,9 @@ function submitNote() {
         });
 
         function updateUIAfterNoteSubmission() {
+            contentElement.val("l");
             contentElement.val("");
+            contentElement.attr('rows', 3);
         }
     }
 
@@ -727,6 +738,6 @@ $(document)
     .on('input.autoExpand', 'textarea.autoExpand', function(){
         var minRows = this.getAttribute('data-min-rows')|0, rows;
         this.rows = minRows;
-        rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 16);
+        rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 20);
         this.rows = minRows + rows;
     });

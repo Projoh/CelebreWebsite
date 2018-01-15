@@ -21,6 +21,9 @@
 <div class="collapse margin-bottom-10 bg-secondary" id="navbarToggleExternalContent">
     <div class=" p-4">
         <ul class="nav justify-content-end" id="navBarList">
+            <li class="nav-item" id="logOutMenuItem">
+                <a class="nav-link text-primary mouse-pointer" onclick="logOut()">LOG OUT</a>
+            </li>
             <li class="nav-item" id="aboutMenuItem">
                 <a class="nav-link" href="#">OPTIONS</a>
             </li>
@@ -48,7 +51,7 @@
     <div  id="progress-loader" class="loader hidden-panel">Loading...</div>
     <div id="mochila" class="hidden-panel">
         <p class="lead font-weight-bold text-light subtitle-main">Current Courses</p>
-        <div class="main-content">
+        <div id="main-content">
             <div class="row no-select highlight-to-yellow course-select-option" id="122342">
                 <div class="col-8">
                     <h1 class="d-block d-md-none font-weight-light text-light text-truncate">Physics II <small class="text-dark d-block d-md-none">#352877</small> </h1>
@@ -58,36 +61,9 @@
                     <i class="material-icons large text-light">&#xE315;</i>
                 </div>
             </div>
-            <div class="row no-select highlight-to-yellow course-select-option">
-                <div class="col-8">
-                    <h1 class="d-block d-md-none font-weight-light text-light text-truncate">Chemistry I <small class="text-dark d-block d-md-none">#135312</small> </h1>
-                    <h1 class="d-none d-md-block d-lg-block d-xl-block display-4 font-weight-light text-light">Chemistry I <small class="text-dark">#352877</small> </h1>
-                </div>
-                <div class="col align-self-center text-right padding-top-bottom">
-                    <i class="material-icons large text-light">&#xE315;</i>
-                </div>
-            </div>
-            <div class="row no-select highlight-to-yellow course-select-option">
-                <div class="col-8">
-                    <h1 class="d-block d-md-none font-weight-light text-light text-truncate">Intro To Literature <small class="text-dark d-block d-md-none">#93821</small> </h1>
-                    <h1 class="d-none d-md-block d-lg-block d-xl-block display-4 font-weight-light text-light">Intro To Lit <small class="text-dark">#352877</small> </h1>
-                </div>
-                <div class="col align-self-center text-right padding-top-bottom">
-                    <i class="material-icons large text-light">&#xE315;</i>
-                </div>
-            </div>
-            <div class="row no-select highlight-to-yellow course-select-option">
-                <div class="col-8">
-                    <h1 class="d-block d-md-none font-weight-light text-light text-truncate">Mathematics <small class="text-dark d-block d-md-none">#23142</small> </h1>
-                    <h1 class="d-none d-md-block d-lg-block d-xl-block display-4 font-weight-light text-light">Mathematics <small class="text-dark">#352877</small> </h1>
-                </div>
-                <div class="col align-self-center text-right padding-top-bottom">
-                    <i class="material-icons large text-light">&#xE315;</i>
-                </div>
-            </div>
 
         </div>
-        <p class="lead font-weight-bold text-light subtitle-main">Upcoming Assignments</p>
+        <p class="lead font-weight-bold text-light subtitle-main text-muted">Upcoming Assignments</p>
 
     </div>
 
@@ -139,22 +115,24 @@
     </div>
 
     <div id="course-page" class="hidden-panel">
-        <div class="text-center"><p class="text-secondary"><test class="padding-right-left-16">Notes </test>Questions</p></div>
+        <div class="text-center"><p class="text-secondary"><test class="padding-right-left-16">Notes </test>
+            <custom class="text-muted">Questions </custom>
+        </p></div>
         <div class="jumbotron mouse-pointer hovering-shadow-large bg-dark text-white">
             <h1 class="display-4">Look at the notes taken this week!</h1>
-            <p class="lead">Your classmates took 412 text notes, uploaded 12 images, and asked 32 questions.</p>
+            <!--<p class="lead">Your classmates took 412 text notes, uploaded 12 images, and asked 32 questions.</p>-->
             <p class="lead">
                 <a class="btn btn-primary btn-lg" href="#mochila" role="button">View Notes</a>
             </p>
         </div>
 
 
-        <div class="alert alert-primary mouse-pointer hovering-shadow-small" role="alert" onclick="viewAllModules();">
-            View questions from this week
-            <i class="float-right material-icons">&#xE315;</i>
-        </div>
+        <!--<div class="alert alert-primary mouse-pointer hovering-shadow-small" role="alert" onclick="viewAllModules();">-->
+            <!--View questions from this week-->
+            <!--<i class="float-right material-icons">&#xE315;</i>-->
+        <!--</div>-->
 
-        <div class="alert alert-primary mouse-pointer hovering-shadow-small" role="alert" onclick="viewAllModules();">
+        <div id="view-all-modules-button" class="alert alert-primary mouse-pointer hovering-shadow-small" role="alert" onclick="viewAllModules('crn');">
             View all course Modules
             <i class="float-right material-icons">&#xE315;</i>
         </div>
