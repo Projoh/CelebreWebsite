@@ -72,38 +72,15 @@
         <p class="lead font-weight-bold text-light subtitle-select-date">Select a Module</p>
 
 
-        <div class="all-modules">
-            <div class="row no-select highlight-to-yellow">
+        <div id="all-modules">
+            <div class="row no-select highlight-to-yellow" id="1">
                 <div class="col-9">
-                    <h1 class="d-block d-md-none font-weight-light text-light text-truncate">Week One <small class="text-dark d-block d-md-none" onclick="editWeekTitle('crn')">Click here to add a title</small> </h1>
-                    <h1 class="d-none d-md-block d-lg-block d-xl-block display-4 font-weight-light text-light">Week One <small class="text-dark" onclick="editWeekTitle('crn')">Click here to add a title</small> </h1>
-                </div>
-                <div class="col align-self-center text-right padding-top-bottom">
-                    <i class="material-icons large text-light">&#xE315;</i>
-                </div>
-            </div>
-            <div class="row no-select highlight-to-yellow">
-                <div class="col-9">
-                    <h1 class="d-block d-md-none font-weight-light text-light text-truncate">Week Two <small class="text-dark d-block d-md-none" onclick="editWeekTitle('crn')">Chapter 3: Polynomials</small> </h1>
-                    <h1 class="d-none d-md-block d-lg-block d-xl-block display-4 font-weight-light text-light">Week Two <small class="text-dark" onclick="editWeekTitle('crn')">Chapter 3: Polynomials</small> </h1>
-                </div>
-                <div class="col align-self-center text-right padding-top-bottom">
-                    <i class="material-icons large text-light">&#xE315;</i>
-                </div>
-            </div>
-            <div class="row no-select highlight-to-yellow">
-                <div class="col-9">
-                    <h1 class="d-block d-md-none font-weight-light text-light text-truncate">Week Three <small class="text-dark d-block d-md-none" onclick="editWeekTitle('crn')">Chapter 4: Advanced Math</small> </h1>
-                    <h1 class="d-none d-md-block d-lg-block d-xl-block display-4 font-weight-light text-light">Week Three <small class="text-dark" onclick="editWeekTitle('crn')">Chapter 4: Advanced Math</small> </h1>
-                </div>
-                <div class="col align-self-center text-right padding-top-bottom">
-                    <i class="material-icons large text-light">&#xE315;</i>
-                </div>
-            </div>
-            <div class="row no-select highlight-to-yellow">
-                <div class="col-9">
-                    <h1 class="d-block d-md-none font-weight-light text-light text-truncate">Week Four <small class="text-dark d-block d-md-none" onclick="editWeekTitle('crn')">Click here to add a title</small> </h1>
-                    <h1 class="d-none d-md-block d-lg-block d-xl-block display-4 font-weight-light text-light">Week Four <small class="text-dark" onclick="editWeekTitle('crn')">Click here to add a title</small> </h1>
+                    <h1 class="d-block d-md-none font-weight-light text-light text-truncate">
+                        <custom class="go-to-course-view text-capitalize">Week One </custom>
+                        <small class="text-dark d-block d-md-none edit-week-title">Click here to add a title</small> </h1>
+                    <h1 class="d-none d-md-block d-lg-block d-xl-block display-4 font-weight-light text-light">
+                        <custom class="go-to-course-view text-capitalize">Week One </custom>
+                        <small class="text-dark edit-week-title">Click here to add a title</small> </h1>
                 </div>
                 <div class="col align-self-center text-right padding-top-bottom">
                     <i class="material-icons large text-light">&#xE315;</i>
@@ -220,6 +197,7 @@
 
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-database.js"></script>

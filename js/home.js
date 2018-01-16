@@ -18,6 +18,8 @@ function checkURLandNavigate() {
 }
 
 $( document ).ready(function() {
+    toggleLoader(true);
+    moment().format();
     console.log( "Initialized!" );
     initializeHighLightOnHover();
     initializeAuthStateListener();
@@ -238,12 +240,13 @@ function intializeMochilaAnimations() {
 
 
 function initializeHighLightOnHover() {
-    var $hoverItems = $('#main-content');
+    var hoverItems = $('#main-content');
     var $courseSelectItems = $('.course-select-option');
     var entireView = $('#all-content');
+    var containerElement = $('#all-modules');
 
 
-    $hoverItems.on('mouseenter', '.course-select-option', function () {
+    hoverItems.on('mouseenter', '.course-select-option', function () {
         var hoverItem = $(this);
             var header = hoverItem.find('h1');
             var rightArrow = hoverItem.find('i');
@@ -254,7 +257,7 @@ function initializeHighLightOnHover() {
             rightArrow.addClass('text-success');
     });
 
-    $hoverItems.on('mouseleave', '.course-select-option', function () {
+    hoverItems.on('mouseleave', '.course-select-option', function () {
         var hoverItem = $(this);
             var header = hoverItem.find('h1');
             var rightArrow = hoverItem.find('i');
@@ -265,10 +268,57 @@ function initializeHighLightOnHover() {
             rightArrow.addClass('text-light');
      });
 
-    $hoverItems.on('click', '.course-select-option', function () {
+    hoverItems.on('click', '.course-select-option', function () {
         var courseSelectItem = $(this);
             var CRN = courseSelectItem.attr('id');
             location.hash = CRN;
+    });
+
+
+    containerElement.on('mouseenter', '.highlight-to-yellow', function () {
+        var hoverItem = $(this);
+        var header = hoverItem.find('h1');
+        var rightArrow = hoverItem.find('i');
+
+        header.removeClass('text-light');
+        header.addClass('text-success');
+        rightArrow.removeClass('text-light');
+        rightArrow.addClass('text-success');
+    });
+    containerElement.on('mouseleave', '.highlight-to-yellow', function () {
+        var hoverItem = $(this);
+        var header = hoverItem.find('h1');
+        var rightArrow = hoverItem.find('i');
+
+        header.removeClass('text-success');
+        header.addClass('text-light');
+        rightArrow.removeClass('text-success');
+        rightArrow.addClass('text-light');
+    });
+    containerElement.on('click', '.go-to-course-view', function () {
+        var weekSelectItem = $(this);
+        var row = weekSelectItem.closest('.row');
+        var weekNumber = row.attr('id');
+        var locationHash = location.hash.split('#');
+        var user = firebase.auth().currentUser;
+
+        if(schoolID){
+            goToLocation();
+        } else {
+            fetchData('users/'+user.uid+'/school_id', setSchoolID);
+        }
+
+        function setSchoolID(school_id) {
+            schoolID = school_id;
+            goToLocation();
+        }
+
+        function goToLocation() {
+            document.location = "courseview.html#"+schoolID+'#'+locationHash[1] + '#'+weekNumber+'#0';
+        }
+    });
+    containerElement.on('click', '.edit-week-title', function () {
+        $('#myModal').modal('show');
     });
 }
 
@@ -418,10 +468,11 @@ function mochila() {
         courseHTML += "            <\/div>";
 
         coursesContentElement.append(courseHTML);
-        toggleLoader(off);
+        toggleLoader(false);
     }
 
     function appendCourseData(course) {
+        toggleLoader(true);
         fetchData('courses/' + schoolID + '/' + course.crn, fillCourseDataAndAppend);
 
         function fillCourseDataAndAppend(course_response){
@@ -448,6 +499,44 @@ function showCoursePage(CRN) {
 function dateselect(CRN) {
     // TODO: Implement this:
     // Calaulcate what day/month currently
+    var startTime = new moment("1-08-2018", "MM-DD-YYYY");
+    var todaysDate = new moment().endOf("week");
+    var duration = moment.duration(todaysDate.diff(startTime));
+
+    var difference = Math.floor(duration.asWeeks());
+
+
+    var containerElement = $('#all-modules');
+    var arrayOfNumbers = ['one','two','three','four', 'five','six','seven','eight','nine',
+        'ten','eleven','twelve','thirteen', 'fourteen'];
+    var modulesHTML="";
+    for(var i = 0; i < difference; i ++) {
+        modulesHTML += "            <div class=\"row no-select highlight-to-yellow\" id=\"";
+        modulesHTML += (i+1);
+        modulesHTML += "\">";
+        modulesHTML += "                <div class=\"col-9\">";
+        modulesHTML += "                    <h1 class=\"d-block d-md-none font-weight-light text-light text-truncate\">";
+        modulesHTML += "                        <custom class=\"go-to-course-view text-capitalize\">Week ";
+        modulesHTML += arrayOfNumbers[i];
+        modulesHTML += " <\/custom>";
+        modulesHTML += "                        <small class=\"text-dark d-block d-md-none edit-week-title\">";
+        modulesHTML += "Click here to add a title";
+        modulesHTML += "<\/small> <\/h1>";
+        modulesHTML += "                    <h1 class=\"d-none d-md-block d-lg-block d-xl-block display-4 font-weight-light text-light\">";
+        modulesHTML += "                        <custom class=\"go-to-course-view text-capitalize\">Week ";
+        modulesHTML += arrayOfNumbers[i];
+        modulesHTML += " <\/custom>";
+        modulesHTML += "                        <small class=\"text-dark edit-week-title\">";
+        modulesHTML += "Click here to add a title";
+        modulesHTML += "<\/small> <\/h1>";
+        modulesHTML += "                <\/div>";
+        modulesHTML += "                <div class=\"col align-self-center text-right padding-top-bottom\">";
+        modulesHTML += "                    <i class=\"material-icons large text-light\">&#xE315;<\/i>";
+        modulesHTML += "                <\/div>";
+        modulesHTML += "            <\/div>";
+    }
+
+    containerElement.html(modulesHTML);
 
     toggleLoader(false);
     fadeInFromBottom(currentPage, SPEED_MEDIUM);
