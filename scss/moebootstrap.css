@@ -6418,6 +6418,9 @@ body {
   border-color: transparent !important;
   cursor: pointer; }
 
+.no-select a {
+  text-decoration: none; }
+
 .mouse-pointer {
   cursor: pointer; }
 

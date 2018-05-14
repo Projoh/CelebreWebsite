@@ -22,6 +22,8 @@ function initializeAuthStateListener() {
 
         }
     });
+
+
 }
 
 const SPEED_SLOW = 200; // Full page transitions
@@ -31,7 +33,16 @@ const SPEED_FAST = 150; // Leaving Screen
 var userIsLoggingIn;
 var database = firebase.database();
 
+function IntializeReturnChecker() {
+    var currentLocation = window.location;
+    var urlQuery = currentLocation.search;
+    if(urlQuery != "") {
+        $('#loadingModal').modal('show');
+    }
+}
+
 $( document ).ready(function() {
+    IntializeReturnChecker();
     initializeInvisibleCaptcha();
     initializeSignupRedirectListener();
     intializePanelPageMover();

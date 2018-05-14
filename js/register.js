@@ -36,6 +36,7 @@ function intializeVerfCodeListener() {
 }
 
 $( document ).ready(function() {
+    IntializeReturnChecker();
     intializePanelPageMover();
     initializeSignupRedirectListener();
     initializeInvisibleCaptcha();
@@ -174,6 +175,14 @@ function formIsValid(form) {
 function resetForm(form) {
     var toggle = form[0][0];
     toggle.value = 0;
+}
+
+function IntializeReturnChecker() {
+    var currentLocation = window.location;
+    var urlQuery = currentLocation.search;
+    if(urlQuery != "") {
+        $('#loadingModal').modal('show');
+    }
 }
 
 function signUpPhoneNumber() {
