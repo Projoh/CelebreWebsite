@@ -508,9 +508,9 @@ function dateselect(CRN) {
 
     var containerElement = $('#all-modules');
     var arrayOfNumbers = ['one','two','three','four', 'five','six','seven','eight','nine',
-        'ten','eleven','twelve','thirteen', 'fourteen'];
+        'ten','eleven','twelve','thirteen', 'fourteen', 'fifteen', 'sixteen'];
     var modulesHTML="";
-    for(var i = 0; i < difference; i ++) {
+    for(var i = 0; i < difference && (i < 16); i ++) {
         modulesHTML += "            <div class=\"row no-select highlight-to-yellow\" id=\"";
         modulesHTML += (i+1);
         modulesHTML += "\">";

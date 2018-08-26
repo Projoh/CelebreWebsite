@@ -86,9 +86,10 @@ function intializeCelebreMeans() {
         function deleteWord() {
             var customTextObject = $('custom.celebre-means');
             var currentText = customTextObject.html();
-            if(currentText !== "") {
+            if(currentText.length > 1) {
                 customTextObject.html(currentText.substring(0, currentText.length-1));
             } else {
+                customTextObject.html(" ");
                 clearInterval(deleteWordInterval);
                 if(!addNewWordInterval) {
                     addNextWord();
@@ -97,9 +98,10 @@ function intializeCelebreMeans() {
         }
         function addNextWord() {
             iterateThroughPossibleWords();
-            var positionInNewWord = 0;
+            var positionInNewWord = 1;
             addNewWordInterval = setInterval(addNewWord, 200);
             var nextWord = possibleWords[position];
+            $('custom.celebre-means').html(nextWord.charAt(0));
 
             function addNewWord(){
                 var customTextObject = $('custom.celebre-means');
